@@ -12,4 +12,5 @@
 
 ## 代码注意点：
 
-无法直接运行源代码，需要在AppDelegate的`private func setEverNoteKey()`方法中设置印象笔记的key
+- 无法直接运行源代码，需要在AppDelegate的`private func setEverNoteKey()`方法中设置印象笔记的key
+- app和extension之间的数据共享用到app groups，该功能需要开发者账号
