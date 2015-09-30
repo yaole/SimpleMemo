@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import CoreSpotlight
 
 class Memo: NSManagedObject {
 
@@ -30,7 +31,6 @@ extension Memo {
         let noteContent = ENNoteContent(string: self.text)
         
         note.content = noteContent
-        
         
         if noteRef == nil {
             
@@ -68,9 +68,9 @@ extension Memo {
         ENSession.sharedSession().deleteNote(noteRef!, completion: { (error) -> Void in
             
             if error != nil {
-                println(error)
+                print(error)
             }
             
         })
     }
-}
+ }

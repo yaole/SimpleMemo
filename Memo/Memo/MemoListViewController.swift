@@ -8,10 +8,13 @@
 
 import UIKit
 import CoreData
+import WatchConnectivity
+
 
 let reuseIdentifier = "Cell"
 
 let backColor = UIColor(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1)
+
 
 class MemoListViewController: MemoCollectionViewController, NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
 
@@ -27,6 +30,8 @@ class MemoListViewController: MemoCollectionViewController, NSFetchedResultsCont
     var searchResults: [Memo] = []
     
     var didSelectedSearchResultIndexPath: NSIndexPath? // 被选中的搜索结果的索引
+    
+    var wcsession: AnyObject?
     
     private lazy var addItem: UIBarButtonItem = {
         
@@ -64,23 +69,56 @@ class MemoListViewController: MemoCollectionViewController, NSFetchedResultsCont
         
         return controller
     }
+  override init() {
+    super.init()
+    fetchedResultsController = loadFetchedResultsController()
+    do{
+      try fetchedResultsController!.performFetch()
+    }catch {
+      
+      print(error)
+    }
+  }
 
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    fetchedResultsController = loadFetchedResultsController()
+    do{
+      try fetchedResultsController!.performFetch()
+    }catch {
+      
+      print(error)
+    }
+  }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView?.backgroundColor = backColor
-        
+        if #available(iOS 9.0, *) {
+            wcsession = wcSession()
+        } 
         setNavigationBar()
         
-        fetchedResultsController = loadFetchedResultsController()
-        fetchedResultsController!.performFetch(nil)
-        
+      
         // Register cell classes
         self.collectionView!.registerClass(MemoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-//        sharedDataToWatch()
+      check3DTouch()
       
     }
+  
+  // 3D Touch Preview
+  
+  private func check3DTouch(){
+    if #available(iOS 9.0, *) {
+        if traitCollection.forceTouchCapability == .Available {
+          
+          registerForPreviewingWithDelegate(self, sourceView: view)
+        }
+    } else {
+        // Fallback on earlier versions
+    }
+  }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -94,13 +132,11 @@ class MemoListViewController: MemoCollectionViewController, NSFetchedResultsCont
         if ENSession.sharedSession().isAuthenticated {
             uploadMemoToEvernote()
         }
-        
-        sharedDataToWatch()
+
+      sharedDataToWatch()
         
     }
-    
-
-    
+  
     private lazy var titleLabel: UILabel = {
        
         let label = UILabel()
@@ -192,9 +228,9 @@ class MemoListViewController: MemoCollectionViewController, NSFetchedResultsCont
         
         isSearching = true
         
-        if !searchBar.text.isEmpty {
+        if !searchBar.text!.isEmpty {
             
-            fetchSearchResults(searchBar.text)
+            fetchSearchResults(searchBar.text!)
         }
         
         collectionView?.reloadData()
@@ -210,9 +246,12 @@ class MemoListViewController: MemoCollectionViewController, NSFetchedResultsCont
         let sortDescriptor = NSSortDescriptor(key: "changeDate", ascending: false)
         
         request.sortDescriptors = [sortDescriptor]
-        
-        var error: NSError?
-        let results = CoreDataStack.shardedCoredataStack.managedObjectContext?.executeFetchRequest(request, error: &error)
+      var results: [AnyObject]?
+      do {
+        results = try CoreDataStack.shardedCoredataStack.managedObjectContext?.executeFetchRequest(request)
+      }catch{
+        print(error)
+      }
         if let resultmemos = results as? [Memo] {
             
             searchResults = resultmemos
@@ -264,7 +303,6 @@ class MemoListViewController: MemoCollectionViewController, NSFetchedResultsCont
         let memoVC =  MemoViewController()
         
         navigationController?.pushViewController(memoVC, animated: true)
-//        presentViewController(memoVC, animated: true, completion: nil)
         
     }
     
@@ -299,11 +337,16 @@ class MemoListViewController: MemoCollectionViewController, NSFetchedResultsCont
                 alert.addAction(UIAlertAction(title: "删除", style: UIAlertActionStyle.Destructive, handler: { (action) -> Void in
                     
                     memo.deleteFromEvernote()
+                  
+  
                     
                     CoreDataStack.shardedCoredataStack.managedObjectContext?.deleteObject(memo)
                     
                     CoreDataStack.shardedCoredataStack.saveContext()
-                    
+//                    if #available(iOS 9.0, *) {
+//                        self.deleteSearchableIndex("\(indexPath.row)")
+//                    } 
+                  
                     self.sharedDataToWatch()
                     
                 }))
@@ -318,8 +361,6 @@ class MemoListViewController: MemoCollectionViewController, NSFetchedResultsCont
         
         return cell
     }
-    
-    
     
     // MARK: UICollectionViewDelegate
     
@@ -352,7 +393,7 @@ class MemoListViewController: MemoCollectionViewController, NSFetchedResultsCont
         // 如果处于搜索状态, 内容更新了,就重新搜索,重新加载数据
         if isSearching {
             
-            fetchSearchResults(searchBar.text)
+            fetchSearchResults(searchBar.text!)
             
             collectionView?.reloadData()
             
@@ -364,7 +405,8 @@ class MemoListViewController: MemoCollectionViewController, NSFetchedResultsCont
         case .Insert:
             
             collectionView!.insertItemsAtIndexPaths([newIndexPath!])
-            
+          
+          
         case .Update:
             
             collectionView?.reloadItemsAtIndexPaths([indexPath!])
@@ -391,10 +433,14 @@ class MemoListViewController: MemoCollectionViewController, NSFetchedResultsCont
         let request = NSFetchRequest(entityName: "Memo")
         
         request.predicate = predicate
-        
-        var error: NSError?
-        
-        let results = CoreDataStack.shardedCoredataStack.managedObjectContext?.executeFetchRequest(request, error: &error)
+      
+      var results: [AnyObject]?
+      do {
+        results = try CoreDataStack.shardedCoredataStack.managedObjectContext?.executeFetchRequest(request)
+      }catch{
+        print(error)
+      }
+      
         if let unUploadMemos = results as? [Memo] {
             
             for unUploadMemo in unUploadMemos {
@@ -424,20 +470,40 @@ class MemoListViewController: MemoCollectionViewController, NSFetchedResultsCont
         
         for index in 0..<count {
             
-            let memo = fetchedResultsController!.fetchedObjects![index] as! Memo
-            var watchMemo = [String: AnyObject]()
-            watchMemo["text"] = memo.text
-            watchMemo["changeDate"] = memo.changeDate
-            
-            results.append(watchMemo)
+//            let memo = fetchedResultsController!.fetchedObjects![index] as! Memo
+//            var watchMemo = [String: AnyObject]()
+//            watchMemo["text"] = memo.text
+//            watchMemo["changeDate"] = memo.changeDate
+          
+          
+            results.append(memoTransformToDictionary(index))
             
         }
-    
+      
+//      let sharedMemos = ["sharedMemos" : results]
+      
         sharedDefaults?.setObject(results, forKey: "WatchMemo")
+      
+      
+
 
         sharedDefaults!.synchronize()
+      
+      if #available(iOS 9.0, *) {
+        shareMessage(["sharedMemos" : results])
+      } else {
+        // Fallback on earlier versions
+      }
         
         
     }
+  func memoTransformToDictionary(index: Int) -> [String : AnyObject]{
+    let memo = fetchedResultsController!.fetchedObjects![index] as! Memo
+    var watchMemo = [String: AnyObject]()
+    watchMemo["text"] = memo.text
+    watchMemo["changeDate"] = memo.changeDate
     
+    return watchMemo
+  }
+  
 }

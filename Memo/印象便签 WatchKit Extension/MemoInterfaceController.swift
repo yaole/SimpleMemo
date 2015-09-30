@@ -8,6 +8,7 @@
 
 import WatchKit
 import Foundation
+import WatchConnectivity
 
 
 class MemoInterfaceController: WKInterfaceController {
@@ -16,12 +17,18 @@ class MemoInterfaceController: WKInterfaceController {
     var newMemo = [String: AnyObject]()
     var memos = [[String: AnyObject]]()
     var isPush = false
+    var wcSession: WCSession?
+  lazy var sharedDefaults: NSUserDefaults? = {
     
+        return NSUserDefaults(suiteName: "group.likumb.com.Memo")
+  }()
+  
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        loadData()
-        setTable()
+        wcSession = sharedSession()
+        loadData(sharedDefaults)
+//        setTable()
     }
     @IBAction func addMemo() {
         
@@ -32,7 +39,7 @@ class MemoInterfaceController: WKInterfaceController {
                 return
             }
             
-            if let text = content[0] as? String {
+            if let text = content?[0] as? String {
             
                 self.saveNewMemo(text)
                 
@@ -50,6 +57,8 @@ class MemoInterfaceController: WKInterfaceController {
         memo["changeDate"] = NSDate()
         
         memos.insert(memo, atIndex: 0)
+      
+        shareMessage(memo)
         
         // 将新笔记共享给iPhone
         let sharedDefaults = NSUserDefaults(suiteName: "group.likumb.com.Memo")
@@ -63,7 +72,7 @@ class MemoInterfaceController: WKInterfaceController {
             sharedDefaults?.setObject(results, forKey: "MemoContent")
         } else{
             
-            var contents = [memo]
+            let contents = [memo]
             
             sharedDefaults?.setObject(contents, forKey: "MemoContent")
             
@@ -76,11 +85,11 @@ class MemoInterfaceController: WKInterfaceController {
     }
 
     
-    private func setTable(){
+     func setTable(){
         
         memoTable.setNumberOfRows(memos.count, withRowType: "memoRow")
-        
-        for (index, memo) in enumerate(memos) {
+
+        for (index, memo) in memos.enumerate() {
             
             let controller = memoTable.rowControllerAtIndex(index) as! MemoRowController
             
@@ -92,16 +101,15 @@ class MemoInterfaceController: WKInterfaceController {
         
     }
     
-    private func loadData(){
-        
-        let sharedDefaults = NSUserDefaults(suiteName: "group.likumb.com.Memo")
-            
-        let data =  sharedDefaults?.objectForKey("WatchMemo") as? [[String: AnyObject]]
-        
+  func loadData(userDefaults: NSUserDefaults?){
+    
+        let data =  userDefaults?.objectForKey("WatchMemo") as? [[String: AnyObject]]
+    
         if let memoList = data {
             
             memos = memoList
         }
+      setTable()
         
     }
 
@@ -111,8 +119,8 @@ class MemoInterfaceController: WKInterfaceController {
         
         if !isPush {
             
-            loadData()
-            setTable()
+            loadData(sharedDefaults)
+//            setTable()
         }
         
         isPush = false
@@ -132,10 +140,7 @@ class MemoInterfaceController: WKInterfaceController {
         
         return (memo["text"] as! String)
         }
-        
-//        presentTextInputControllerWithSuggestions
-        
-        
+                
         return nil
     }
 

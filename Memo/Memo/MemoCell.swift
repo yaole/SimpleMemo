@@ -55,8 +55,7 @@ class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     private func setUI(){
         
         contentView.addSubview(contentLabel)
-        
-        contentLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        contentLabel.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addConstraint(NSLayoutConstraint(item: contentLabel, attribute: .Top, relatedBy: .Equal, toItem: contentView, attribute: .Top, multiplier: 1, constant: 5))
         contentView.addConstraint(NSLayoutConstraint(item: contentLabel, attribute: .Left, relatedBy: .Equal, toItem: contentView, attribute: .Left, multiplier: 1, constant: 5))

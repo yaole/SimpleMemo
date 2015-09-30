@@ -11,10 +11,12 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+  
+  
     var window: UIWindow?
-    
-    
+  
+    var navigationController: UINavigationController?
+  
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         prepareWindow()
@@ -60,17 +62,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // 设置印象笔记
     private func setEverNoteKey(){
-        
-//        let SANDBOX_HOST = ENSessionHostSandbox
-        let CONSUMER_KEY = "your key"
-        let CONSUMER_SECRET = "your secret"
+      
+        let CONSUMER_KEY = "YOUR KEY"
+        let CONSUMER_SECRET = "YOUR SECRET"
         
         ENSession.setSharedSessionConsumerKey(CONSUMER_KEY, consumerSecret: CONSUMER_SECRET, optionalHost: nil)
     }
-    
-    
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        
+  
+  
+      
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+      
+      
         let didHandle = ENSession.sharedSession().handleOpenURL(url)
         
         return didHandle
@@ -81,8 +84,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.backgroundColor = UIColor.whiteColor()
-        
-        window?.rootViewController = UINavigationController(rootViewController: MemoListViewController())
+      
+        navigationController = UINavigationController(rootViewController: MemoListViewController())
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
     }
@@ -95,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor(red: 18/255.0, green: 136/255.0, blue: 97/255.0, alpha: 1)
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
     }
-    
+  
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -119,12 +123,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        // Saves changes in the application's managed object context before the application terminates.
-        //        self.saveContext()
+        
         CoreDataStack.shardedCoredataStack.saveContext()
     }
+  
+  @available(iOS 9.0, *)
+  func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: Bool -> Void){
     
+    var handle = false
+    
+    if let _ = shortcutItem.localizedTitle as String? {
+      
+      handle = true
+      let memoVC =  MemoViewController()
+      navigationController?.pushViewController(memoVC, animated: true)
+      
+    }
+    
+    completionHandler(handle)
+    
+  }
     
 }
 

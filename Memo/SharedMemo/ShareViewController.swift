@@ -45,7 +45,7 @@ class ShareViewController: SLComposeServiceViewController {
             sharedDefaults?.setObject(results, forKey: "MemoContent")
         } else{
             
-            var contents = [memo]
+            let contents = [memo]
             
             sharedDefaults?.setObject(contents, forKey: "MemoContent")
             

@@ -17,10 +17,10 @@ class MemoViewController: UIViewController, UITextViewDelegate {
     var sharedItem: UIBarButtonItem!
     
     var isTextChanged = false
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         setUI()
         setTextView()
         textViewAttrubt()
@@ -37,7 +37,7 @@ class MemoViewController: UIViewController, UITextViewDelegate {
         
         let keyboarFrame: AnyObject? = userDic.valueForKey(UIKeyboardFrameEndUserInfoKey)
         
-        let frame = keyboarFrame?.CGRectValue()
+        let frame = keyboarFrame?.CGRectValue
         
         let keyboardY = frame?.origin.y
 
@@ -100,15 +100,14 @@ class MemoViewController: UIViewController, UITextViewDelegate {
         textView.keyboardDismissMode = .Interactive
         
         view.addSubview(textView)
-        
-        textView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        textView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addConstraint(NSLayoutConstraint(item: textView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1, constant: 0))
         view.addConstraint(NSLayoutConstraint(item: textView, attribute: .Left, relatedBy: .Equal, toItem: view, attribute: .Left, multiplier: 1, constant: 5))
         view.addConstraint(NSLayoutConstraint(item: textView, attribute: .Right, relatedBy: .Equal, toItem: view, attribute: .Right, multiplier: 1, constant: -5))
         view.addConstraint(NSLayoutConstraint(item: textView, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1, constant: -5))
-        let constraints = view.constraints()
-        textViewBottomConstraint = constraints.last as? NSLayoutConstraint
+        let constraints = view.constraints
+        textViewBottomConstraint = constraints.last
     }
     
     private func textViewAttrubt(){
@@ -172,5 +171,5 @@ class MemoViewController: UIViewController, UITextViewDelegate {
         CoreDataStack.shardedCoredataStack.saveContext()
         
     }
-    
+  
 }
