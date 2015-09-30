@@ -4,11 +4,13 @@
 **下载易便签:** https://itunes.apple.com/cn/app/yi-bian-qian/id1029807896?mt=8
 
 ## 主要功能特点
-- **swift1.2编写** 
+- **swift2.0编写** 
 - **CoreData存储数据**
 - **适配Apple Watch**
 - **同步便签到印象笔记**
 - **分享extension**
+- **支持3D Touch**
+- **适配 Watch OS2**
 
 ## 代码注意点：
 
