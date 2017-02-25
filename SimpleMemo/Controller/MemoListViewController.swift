@@ -141,6 +141,8 @@ private extension MemoListViewController {
       ENSession.shared.authenticate(with: self, preferRegistration: false, completion: { error in
         if error == nil {
           self.evernoteItem.tintColor = UIColor(red: 23/255.0, green: 127/255.0, blue: 251/255.0, alpha: 1)
+        } else {
+          printLog(message: error.debugDescription)
         }
       })
     }
@@ -156,6 +158,7 @@ private extension MemoListViewController {
     searchBar.backgroundColor = backgroundColor
     navigationItem.titleView = searchView
     searchView.frame = navigationController!.navigationBar.bounds
+    searchView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     searchView.addSubview(searchBar)
 
     var margin: CGFloat = 0

@@ -13,7 +13,7 @@ extension ENSession {
 
   /// 上传便签到印象笔记
   func uploadMemoToEvernote(_ memo: Memo) {
-    guard let text = memo.text else {
+    guard let text = memo.text, text.characters.count > 0 else {
       return
     }
 

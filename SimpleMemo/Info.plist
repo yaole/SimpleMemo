@@ -33,7 +33,7 @@
 	<string>01010000</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>zh</string>
+		<string>en</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
