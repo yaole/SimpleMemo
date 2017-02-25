@@ -8,8 +8,8 @@
 
 import UIKit
 
-private let margin: CGFloat = 10
-private var itemWidth: CGFloat = 0
+let margin: CGFloat = 10
+var itemWidth: CGFloat = 0
 
 class MemoCollectionViewController: UICollectionViewController {
 

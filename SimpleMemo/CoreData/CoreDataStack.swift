@@ -9,7 +9,9 @@
 import Foundation
 import CoreData
 
-struct CoreDataStack {
+class CoreDataStack {
+
+  static let `default` = CoreDataStack()
 
   lazy var persistentContainer: NSPersistentContainer = {
     let container = NSPersistentContainer(name: "SimpleMemo")
@@ -25,7 +27,7 @@ struct CoreDataStack {
     return self.persistentContainer.viewContext
   }()
 
-  mutating func saveContext () {
+  func saveContext () {
     if managedContext.hasChanges {
       do {
         try managedContext.save()
@@ -36,4 +38,15 @@ struct CoreDataStack {
     }
   }
 
+}
+
+extension CoreDataStack {
+
+  func createMemo() -> Memo {
+    let entityDescription = NSEntityDescription.entity(forEntityName: "Memo", in: managedContext)
+    let memo = Memo(entity: entityDescription!, insertInto: managedContext)
+    memo.createDate = Date()
+    memo.isUpload = false
+    return memo
+  }
 }

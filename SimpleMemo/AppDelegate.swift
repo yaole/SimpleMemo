@@ -23,17 +23,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.rootViewController = navController
     window?.makeKeyAndVisible()
 
+    loadDefaultMemos()
+
     return true
   }
 
   func applicationDidEnterBackground(_ application: UIApplication) {
-    var coredataStack = CoreDataStack()
-    coredataStack.saveContext()
+    CoreDataStack.default.saveContext()
   }
 
   func applicationWillTerminate(_ application: UIApplication) {
-    var coredataStack = CoreDataStack()
-    coredataStack.saveContext()
+    CoreDataStack.default.saveContext()
+  }
+
+}
+
+private extension AppDelegate {
+
+  func loadDefaultMemos(){
+    let oldVersion = UserDefaults.standard.object(forKey: "MemoVersion") as? String
+    if oldVersion != nil {
+      return
+    }
+
+    let dict = Bundle.main.infoDictionary!
+    let version = dict["CFBundleShortVersionString"] as! String
+    UserDefaults.standard.set(version, forKey: "MemoVersion")
+
+    guard let path = Bundle.main.path(forResource: "DefaultMemos", ofType: "plist") else {
+      return
+    }
+    let memos = NSArray(contentsOfFile: path) as! [String]
+    for memoText in memos {
+      let memo = CoreDataStack.default.createMemo()
+      memo.text = memoText
+      CoreDataStack.default.saveContext()
+    }
   }
 
 }
