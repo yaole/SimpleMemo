@@ -6,6 +6,7 @@
 - **适配Swift 3.0**
 - **加强 3D Touch 功能**
 - **移除 ShareExtension、WatchExten**
+- **使用[SwiftLint](https://github.com/realm/SwiftLint)检查代码风格**
 
 ## 1.1.0 版主要功能特点
 - **swift2.0编写** 
