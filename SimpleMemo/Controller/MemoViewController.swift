@@ -8,14 +8,16 @@
 
 import UIKit
 import CoreData
+import EvernoteSDK
 
 class MemoViewController: UIViewController, UITextViewDelegate {
 
-  let textView = UITextView()
   var memo: Memo?
-  var textViewBottomConstraint: NSLayoutConstraint?
-  var sharedItem: UIBarButtonItem!
-  var isTextChanged = false
+
+  fileprivate let textView = UITextView()
+  fileprivate var textViewBottomConstraint: NSLayoutConstraint?
+  fileprivate var sharedItem: UIBarButtonItem!
+  fileprivate var isTextChanged = false
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -89,19 +91,10 @@ class MemoViewController: UIViewController, UITextViewDelegate {
     super.viewWillDisappear(animated)
     view.endEditing(true)
     if let memo = memo, textView.text.isEmpty {
-//      memo!.deleteFromEvernote()
+      ENSession.shared.deleteFromEvernote(with: memo)
       CoreDataStack.default.managedContext.delete(memo)
     }
     CoreDataStack.default.saveContext()
-  }
-
-  // MARK: - 上传便签到印象笔记
-
-  fileprivate func uploadMemoToEvernote() {
-    if textView.text.isEmpty {
-      return
-    }
-//    memo?.uploadToEvernote()
   }
 
   // MARK: - UITextViewDelegate

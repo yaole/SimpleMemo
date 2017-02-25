@@ -66,6 +66,13 @@ class MemoListViewController: MemoCollectionViewController {
     setNavigationBar()
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    if ENSession.shared.isAuthenticated {
+      uploadMemoToEvernote()
+    }
+  }
+
 }
 
 // MARK: - UICollectionViewDataSource Delegate
@@ -242,6 +249,31 @@ extension MemoListViewController: NSFetchedResultsControllerDelegate {
     case .move:
       collectionView?.moveItem(at: indexPath!, to:newIndexPath!)
       collectionView?.reloadItems(at: [newIndexPath!])
+    }
+  }
+
+}
+
+// MARK: - Evernote
+
+private extension MemoListViewController {
+
+  func uploadMemoToEvernote() {
+    // 取出所有没有上传的memo
+    let predicate = NSPredicate(format: "isUpload == %@", false as CVarArg)
+    let request = Memo.defaultRequest()
+    request.predicate = predicate
+    var results: [AnyObject]?
+    do {
+      results = try CoreDataStack.default.managedContext.fetch(request)
+    } catch {
+      printLog(message: error.localizedDescription)
+    }
+
+    if let unUploadMemos = results as? [Memo] {
+      for unUploadMemo in unUploadMemos {
+        ENSession.shared.uploadMemoToEvernote(unUploadMemo)
+      }
     }
   }
 
