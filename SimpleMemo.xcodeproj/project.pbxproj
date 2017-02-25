@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BEE34FDEF4D4BC9921A587AA /* Pods_SimpleMemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC2BE1B2C769D751B9D10E6 /* Pods_SimpleMemoTests.framework */; };
+		E3A794D6EB5950F77DBCDEA7 /* Pods_SimpleMemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F2CC5724698A7B9360A51B /* Pods_SimpleMemo.framework */; };
 		F4BBE94D1E613F3900638C21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE94C1E613F3900638C21 /* AppDelegate.swift */; };
-		F4BBE94F1E613F3900638C21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE94E1E613F3900638C21 /* ViewController.swift */; };
-		F4BBE9521E613F3900638C21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4BBE9501E613F3900638C21 /* Main.storyboard */; };
 		F4BBE9551E613F3900638C21 /* SimpleMemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE9531E613F3900638C21 /* SimpleMemo.xcdatamodeld */; };
 		F4BBE9571E613F3900638C21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4BBE9561E613F3900638C21 /* Assets.xcassets */; };
 		F4BBE95A1E613F3900638C21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4BBE9581E613F3900638C21 /* LaunchScreen.storyboard */; };
 		F4BBE9651E613F3900638C21 /* SimpleMemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE9641E613F3900638C21 /* SimpleMemoTests.swift */; };
+		F4BBE9721E61444600638C21 /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE9711E61444600638C21 /* MemoListViewController.swift */; };
+		F4BBE9741E61449800638C21 /* MemoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE9731E61449800638C21 /* MemoCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,10 +29,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		39039D2E42EEBF15060D08AF /* Pods-SimpleMemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleMemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleMemo/Pods-SimpleMemo.debug.xcconfig"; sourceTree = "<group>"; };
+		5C7CC30732730C4BBA0D74D0 /* Pods-SimpleMemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleMemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleMemoTests/Pods-SimpleMemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5D33421544426C5BB005BEB5 /* Pods-SimpleMemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleMemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleMemoTests/Pods-SimpleMemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		63F2CC5724698A7B9360A51B /* Pods_SimpleMemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleMemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AC2BE1B2C769D751B9D10E6 /* Pods_SimpleMemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleMemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F76F7EDC39356F26F1CB2C8 /* Pods-SimpleMemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleMemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleMemo/Pods-SimpleMemo.release.xcconfig"; sourceTree = "<group>"; };
 		F4BBE9491E613F3900638C21 /* SimpleMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4BBE94C1E613F3900638C21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F4BBE94E1E613F3900638C21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F4BBE9511E613F3900638C21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F4BBE9541E613F3900638C21 /* SimpleMemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SimpleMemo.xcdatamodel; sourceTree = "<group>"; };
 		F4BBE9561E613F3900638C21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4BBE9591E613F3900638C21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,8 +44,9 @@
 		F4BBE9601E613F3900638C21 /* SimpleMemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleMemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4BBE9641E613F3900638C21 /* SimpleMemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMemoTests.swift; sourceTree = "<group>"; };
 		F4BBE9661E613F3900638C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F4BBE96F1E613FC500638C21 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		F4BBE9701E613FC500638C21 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		F4BBE9711E61444600638C21 /* MemoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
+		F4BBE9731E61449800638C21 /* MemoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3A794D6EB5950F77DBCDEA7 /* Pods_SimpleMemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,18 +62,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEE34FDEF4D4BC9921A587AA /* Pods_SimpleMemoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7BD4C46FCEA94B2178EFCD69 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				39039D2E42EEBF15060D08AF /* Pods-SimpleMemo.debug.xcconfig */,
+				9F76F7EDC39356F26F1CB2C8 /* Pods-SimpleMemo.release.xcconfig */,
+				5C7CC30732730C4BBA0D74D0 /* Pods-SimpleMemoTests.debug.xcconfig */,
+				5D33421544426C5BB005BEB5 /* Pods-SimpleMemoTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D3595B6CEA9C87E1C32BD95D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				63F2CC5724698A7B9360A51B /* Pods_SimpleMemo.framework */,
+				7AC2BE1B2C769D751B9D10E6 /* Pods_SimpleMemoTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F4BBE9401E613F3900638C21 = {
 			isa = PBXGroup;
 			children = (
 				F4BBE94B1E613F3900638C21 /* SimpleMemo */,
 				F4BBE9631E613F3900638C21 /* SimpleMemoTests */,
 				F4BBE94A1E613F3900638C21 /* Products */,
+				7BD4C46FCEA94B2178EFCD69 /* Pods */,
+				D3595B6CEA9C87E1C32BD95D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,8 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				F4BBE94C1E613F3900638C21 /* AppDelegate.swift */,
-				F4BBE94E1E613F3900638C21 /* ViewController.swift */,
-				F4BBE9501E613F3900638C21 /* Main.storyboard */,
+				F4BBE9711E61444600638C21 /* MemoListViewController.swift */,
+				F4BBE9731E61449800638C21 /* MemoCollectionViewController.swift */,
 				F4BBE9561E613F3900638C21 /* Assets.xcassets */,
 				F4BBE9581E613F3900638C21 /* LaunchScreen.storyboard */,
 				F4BBE95B1E613F3900638C21 /* Info.plist */,
@@ -108,9 +139,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F4BBE9691E613F3900638C21 /* Build configuration list for PBXNativeTarget "SimpleMemo" */;
 			buildPhases = (
+				2CE7206C231DA8351FF7D585 /* [CP] Check Pods Manifest.lock */,
 				F4BBE9451E613F3900638C21 /* Sources */,
 				F4BBE9461E613F3900638C21 /* Frameworks */,
 				F4BBE9471E613F3900638C21 /* Resources */,
+				447B5140E90545996BB12F2C /* [CP] Embed Pods Frameworks */,
+				D6F1E635F79FA55E10578B36 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -125,9 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F4BBE96C1E613F3900638C21 /* Build configuration list for PBXNativeTarget "SimpleMemoTests" */;
 			buildPhases = (
+				1320CD94721DB8BC079010F1 /* [CP] Check Pods Manifest.lock */,
 				F4BBE95C1E613F3900638C21 /* Sources */,
 				F4BBE95D1E613F3900638C21 /* Frameworks */,
 				F4BBE95E1E613F3900638C21 /* Resources */,
+				6540A79959FB802AFE9B7077 /* [CP] Embed Pods Frameworks */,
+				481EA733C932FB11103DFE91 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -187,7 +224,6 @@
 			files = (
 				F4BBE95A1E613F3900638C21 /* LaunchScreen.storyboard in Resources */,
 				F4BBE9571E613F3900638C21 /* Assets.xcassets in Resources */,
-				F4BBE9521E613F3900638C21 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,13 +236,107 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1320CD94721DB8BC079010F1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		2CE7206C231DA8351FF7D585 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		447B5140E90545996BB12F2C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleMemo/Pods-SimpleMemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		481EA733C932FB11103DFE91 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleMemoTests/Pods-SimpleMemoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6540A79959FB802AFE9B7077 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleMemoTests/Pods-SimpleMemoTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6F1E635F79FA55E10578B36 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleMemo/Pods-SimpleMemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F4BBE9451E613F3900638C21 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4BBE94F1E613F3900638C21 /* ViewController.swift in Sources */,
+				F4BBE9721E61444600638C21 /* MemoListViewController.swift in Sources */,
 				F4BBE9551E613F3900638C21 /* SimpleMemo.xcdatamodeld in Sources */,
+				F4BBE9741E61449800638C21 /* MemoCollectionViewController.swift in Sources */,
 				F4BBE94D1E613F3900638C21 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,15 +360,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F4BBE9501E613F3900638C21 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F4BBE9511E613F3900638C21 /* Base */,
-				F4BBE96F1E613FC500638C21 /* zh-Hans */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F4BBE9581E613F3900638C21 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -348,6 +469,7 @@
 		};
 		F4BBE96A1E613F3900638C21 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39039D2E42EEBF15060D08AF /* Pods-SimpleMemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SS76CD8QRS;
@@ -361,6 +483,7 @@
 		};
 		F4BBE96B1E613F3900638C21 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F76F7EDC39356F26F1CB2C8 /* Pods-SimpleMemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SS76CD8QRS;
@@ -374,8 +497,9 @@
 		};
 		F4BBE96D1E613F3900638C21 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C7CC30732730C4BBA0D74D0 /* Pods-SimpleMemoTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SimpleMemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -388,8 +512,9 @@
 		};
 		F4BBE96E1E613F3900638C21 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D33421544426C5BB005BEB5 /* Pods-SimpleMemoTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SimpleMemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -419,6 +544,7 @@
 				F4BBE96B1E613F3900638C21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4BBE96C1E613F3900638C21 /* Build configuration list for PBXNativeTarget "SimpleMemoTests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +553,7 @@
 				F4BBE96E1E613F3900638C21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
