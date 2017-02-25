@@ -1,5 +1,5 @@
 //
-//  MemoExtension.swift
+//  Memo.swift
 //  SimpleMemo
 //
 //  Created by  李俊 on 2017/2/25.
@@ -8,9 +8,24 @@
 
 import Foundation
 import CoreData
+import EvernoteSDK
+
+public class Memo: NSManagedObject {
+
+  @NSManaged public var text: String?
+  @NSManaged public var noteRef: ENNoteRef?
+  @NSManaged public var isUpload: Bool
+  @NSManaged public var createDate: Date?
+  @NSManaged public var updateDate: Date?
+
+}
 
 extension Memo {
-  static func newMemo() -> Memo {
+  public class func defaultRequest() -> NSFetchRequest<Memo> {
+    return NSFetchRequest<Memo>(entityName: "Memo");
+  }
+
+  public class func newMemo() -> Memo {
     let context = CoreDataStack.default.managedContext
     let entityDescription = NSEntityDescription.entity(forEntityName: "Memo", in: context)
     let memo = Memo(entity: entityDescription!, insertInto: context)
