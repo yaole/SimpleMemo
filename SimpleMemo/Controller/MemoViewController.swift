@@ -29,11 +29,9 @@ class MemoViewController: UIViewController, UITextViewDelegate {
 
   // MARK: - 监听键盘的改变
   func changeLayOut(_ notification: Notification) {
-    let userInfo = notification.userInfo!
-    let keyboarFrame: Any? = userInfo[UIKeyboardFrameEndUserInfoKey]
-    let frame = (keyboarFrame as AnyObject).cgRectValue
-    let keyboardY = frame?.origin.y
-    textViewBottomConstraint!.constant = -(view.bounds.size.height - keyboardY! + 5)
+    let keyboarFrame: CGRect? = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect
+    let keyboardY = keyboarFrame?.origin.y ?? 0
+    textViewBottomConstraint!.constant = -(view.bounds.size.height - keyboardY + 5)
   }
 
   // MARK: - 设置视图控件
@@ -48,7 +46,6 @@ class MemoViewController: UIViewController, UITextViewDelegate {
     } else {
       textView.text = memo!.text
     }
-
   }
 
   /// 分享
@@ -62,7 +59,6 @@ class MemoViewController: UIViewController, UITextViewDelegate {
       let popoverView =  UIPopoverController(contentViewController: activityController)
       popoverView.present(from: barButton, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
     }
-
   }
 
   fileprivate func setTextView() {
