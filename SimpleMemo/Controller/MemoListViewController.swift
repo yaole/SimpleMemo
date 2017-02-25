@@ -12,9 +12,8 @@ class MemoListViewController: MemoCollectionViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
     collectionView?.backgroundColor = .white
-    title = "易便签"
+    title = "便签"
   }
 
 }
