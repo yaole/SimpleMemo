@@ -27,13 +27,13 @@ class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     label.sizeToFit()
     return label
   }()
-  private let getsureRecognizer: UIGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress))
-
+  private var getsureRecognizer: UIGestureRecognizer?
   override init(frame: CGRect) {
     super.init(frame: frame)
     backgroundColor = UIColor.white
-    getsureRecognizer.delegate = self
-    contentView.addGestureRecognizer(getsureRecognizer)
+    getsureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress))
+    getsureRecognizer?.delegate = self
+    contentView.addGestureRecognizer(getsureRecognizer!)
     setUI()
 
     layer.shadowOffset = CGSize(width: 0, height: 1)
@@ -58,7 +58,7 @@ class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 
   @objc private func longPress() {
     // 添加一个判断,防止触发两次
-    if let memo = memo, getsureRecognizer.state == .began {
+    if let memo = memo, getsureRecognizer?.state == .began {
       deleteMemo?(memo)
     }
   }

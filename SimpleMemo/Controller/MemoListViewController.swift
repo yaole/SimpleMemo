@@ -95,7 +95,9 @@ extension MemoListViewController {
       let alert = UIAlertController(title: "删除便签", message: nil, preferredStyle: UIAlertControllerStyle.alert)
       alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: nil))
       alert.addAction(UIAlertAction(title: "删除", style: UIAlertActionStyle.destructive, handler: { (action) -> Void in
-        // TODO: delete handle
+        ENSession.shared.deleteFromEvernote(with: memo)
+        CoreDataStack.default.managedContext.delete(memo)
+        CoreDataStack.default.saveContext()
       }))
       self.present(alert, animated: true, completion: nil)
     }
