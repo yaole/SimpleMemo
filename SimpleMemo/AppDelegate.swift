@@ -14,14 +14,15 @@ import EvernoteSDK
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  var navigationController: UINavigationController?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
     let mainController = MemoListViewController()
-    let navController = UINavigationController(rootViewController: mainController)
+    navigationController = UINavigationController(rootViewController: mainController)
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.backgroundColor = UIColor.white
-    window?.rootViewController = navController
+    window?.rootViewController = navigationController
     window?.makeKeyAndVisible()
 
     loadDefaultMemos()
@@ -44,6 +45,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func applicationWillTerminate(_ application: UIApplication) {
     CoreDataStack.default.saveContext()
+  }
+
+  func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+    var handle = false
+    if let _ = shortcutItem.localizedTitle as String? {
+      handle = true
+      let memoVC =  MemoViewController()
+      navigationController?.pushViewController(memoVC, animated: true)
+    }
+    completionHandler(handle)
   }
 
 }

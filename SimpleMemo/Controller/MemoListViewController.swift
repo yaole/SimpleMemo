@@ -18,7 +18,6 @@ class MemoListViewController: MemoCollectionViewController {
   fileprivate var isSearching: Bool = false
   fileprivate lazy var searchResults = [Memo]()
   fileprivate lazy var searchBar = UISearchBar()
-  fileprivate var didSelectedSearchResultIndexPath: IndexPath? // 被选中的搜索结果的索引
 
   fileprivate lazy var titleLabel: UILabel = {
     let label = UILabel()
@@ -64,6 +63,10 @@ class MemoListViewController: MemoCollectionViewController {
     collectionView?.backgroundColor = backgroundColor
     collectionView?.register(MemoCell.self, forCellWithReuseIdentifier: String(describing: MemoCell.self))
     setNavigationBar()
+
+    if traitCollection.forceTouchCapability == .available {
+      registerForPreviewing(with: self, sourceView: view)
+    }
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -106,14 +109,7 @@ extension MemoListViewController {
 
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     searchBar.resignFirstResponder()
-    var memo: Memo
-    if isSearching {
-      memo = searchResults[indexPath.row]
-      didSelectedSearchResultIndexPath = indexPath
-    } else {
-      memo = fetchedResultsController.object(at: indexPath)
-    }
-
+    let memo = isSearching ? searchResults[indexPath.row] : fetchedResultsController.object(at: indexPath)
     let MemoView = MemoViewController()
     MemoView.memo = memo
     navigationController?.pushViewController(MemoView, animated: true)
@@ -255,6 +251,27 @@ extension MemoListViewController: NSFetchedResultsControllerDelegate {
       collectionView?.moveItem(at: indexPath!, to:newIndexPath!)
       collectionView?.reloadItems(at: [newIndexPath!])
     }
+  }
+
+}
+
+// MARK: - UIViewControllerPreviewingDelegate
+
+extension MemoListViewController: UIViewControllerPreviewingDelegate {
+
+  func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+    guard let indexPath = collectionView?.indexPathForItem(at: location), let cell = collectionView?.cellForItem(at: indexPath) else { return nil }
+
+    let detailViewController = MemoViewController()
+    let memo = isSearching ? searchResults[indexPath.row] : fetchedResultsController.object(at: indexPath)
+    detailViewController.preferredContentSize = CGSize(width: 0.0, height: 350)
+    previewingContext.sourceRect = cell.frame
+    detailViewController.memo = memo
+    return detailViewController
+  }
+
+  func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+    show(viewControllerToCommit, sender: self)
   }
 
 }

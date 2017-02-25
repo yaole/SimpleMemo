@@ -25,8 +25,17 @@ class MemoViewController: UIViewController, UITextViewDelegate {
     setUI()
     setTextView()
     textViewAttrubt()
-
     NotificationCenter.default.addObserver(self, selector: #selector(changeLayOut(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+  }
+
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    view.endEditing(true)
+    if let memo = memo, textView.text.isEmpty {
+      ENSession.shared.deleteFromEvernote(with: memo)
+      CoreDataStack.default.managedContext.delete(memo)
+    }
+    CoreDataStack.default.saveContext()
   }
 
   // MARK: - 监听键盘的改变
@@ -86,17 +95,6 @@ class MemoViewController: UIViewController, UITextViewDelegate {
     textView.font = UIFont.systemFont(ofSize: 16)
   }
 
-  // MARK: - 视图消失时,
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    view.endEditing(true)
-    if let memo = memo, textView.text.isEmpty {
-      ENSession.shared.deleteFromEvernote(with: memo)
-      CoreDataStack.default.managedContext.delete(memo)
-    }
-    CoreDataStack.default.saveContext()
-  }
-
   // MARK: - UITextViewDelegate
 
   func textViewDidChange(_ textView: UITextView) {
@@ -107,6 +105,19 @@ class MemoViewController: UIViewController, UITextViewDelegate {
     memo!.text = textView.text
     memo!.updateDate = Date()
     CoreDataStack.default.saveContext()
+  }
+
+  // 3D Touch previewActionItems
+  override var previewActionItems: [UIPreviewActionItem] {
+    let deleteAction = UIPreviewAction(title: "删除", style: .destructive) { (action, controller) in
+      guard let memoController: MemoViewController = controller as? MemoViewController, let memo = memoController.memo else {
+        return
+      }
+
+      CoreDataStack.default.managedContext.delete(memo)
+      ENSession.shared.deleteFromEvernote(with: memo)
+    }
+    return [deleteAction]
   }
 
 }
