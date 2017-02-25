@@ -1,0 +1,8 @@
+
+disabled_rules:
+    - cyclomatic_complexity
+    - line_length
+    - file_length
+    - function_body_length
+    - valid_docs
+    - type_body_length

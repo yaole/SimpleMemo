@@ -17,8 +17,8 @@ class MemoLabel: UILabel {
     case bottom = 2
   }
 
-  var verticalAlignment: VerticalAlignment?  {
-    didSet{
+  var verticalAlignment: VerticalAlignment? {
+    didSet {
       setNeedsDisplay()
     }
   }

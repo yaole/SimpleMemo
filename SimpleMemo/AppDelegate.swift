@@ -50,20 +50,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 private extension AppDelegate {
 
-  func loadDefaultMemos(){
+  func loadDefaultMemos() {
     let oldVersion = UserDefaults.standard.object(forKey: "MemoVersion") as? String
     if oldVersion != nil {
       return
     }
 
     let dict = Bundle.main.infoDictionary!
-    let version = dict["CFBundleShortVersionString"] as! String
-    UserDefaults.standard.set(version, forKey: "MemoVersion")
-
-    guard let path = Bundle.main.path(forResource: "DefaultMemos", ofType: "plist") else {
+    if let version = dict["CFBundleShortVersionString"] as? String {
+      UserDefaults.standard.set(version, forKey: "MemoVersion")
+    }
+    guard let path = Bundle.main.path(forResource: "DefaultMemos", ofType: "plist"),
+      let memos = NSArray(contentsOfFile: path) as? [String] else {
       return
     }
-    let memos = NSArray(contentsOfFile: path) as! [String]
+
     for memoText in memos {
       let memo = Memo.newMemo()
       memo.text = memoText
@@ -72,4 +73,3 @@ private extension AppDelegate {
   }
 
 }
-

@@ -12,7 +12,7 @@ class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 
   var deleteMemo: ((_ memo: Memo) -> ())?
   var memo: Memo? {
-    didSet{
+    didSet {
       contentLabel.text = memo!.text
       contentLabel.preferredMaxLayoutWidth = itemWidth - 2 * margin
     }
@@ -36,8 +36,8 @@ class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     contentView.addGestureRecognizer(getsureRecognizer)
     setUI()
 
-    layer.shadowOffset = CGSize(width: 0, height: 1);
-    layer.shadowOpacity = 0.2;
+    layer.shadowOffset = CGSize(width: 0, height: 1)
+    layer.shadowOpacity = 0.2
     layer.shouldRasterize = true
     layer.rasterizationScale = UIScreen.main.scale
   }
@@ -46,8 +46,7 @@ class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     fatalError("init(coder:) has not been implemented")
   }
 
-
-  private func setUI(){
+  private func setUI() {
     contentView.addSubview(contentLabel)
     contentLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -68,4 +67,3 @@ class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     deleteMemo = nil
   }
 }
-

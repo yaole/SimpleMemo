@@ -23,7 +23,7 @@ public class Memo: NSManagedObject {
 
 extension Memo {
   public class func defaultRequest() -> NSFetchRequest<Memo> {
-    return NSFetchRequest<Memo>(entityName: "Memo");
+    return NSFetchRequest<Memo>(entityName: "Memo")
   }
 
   public class func newMemo() -> Memo {

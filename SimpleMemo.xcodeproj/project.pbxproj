@@ -10,6 +10,7 @@
 		BEE34FDEF4D4BC9921A587AA /* Pods_SimpleMemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC2BE1B2C769D751B9D10E6 /* Pods_SimpleMemoTests.framework */; };
 		E3A794D6EB5950F77DBCDEA7 /* Pods_SimpleMemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F2CC5724698A7B9360A51B /* Pods_SimpleMemo.framework */; };
 		F4A0414E1E618CA00012EAEF /* PrintLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A0414D1E618CA00012EAEF /* PrintLog.swift */; };
+		F4A041501E618F910012EAEF /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A0414F1E618F910012EAEF /* MemoViewController.swift */; };
 		F4BBE94D1E613F3900638C21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE94C1E613F3900638C21 /* AppDelegate.swift */; };
 		F4BBE9551E613F3900638C21 /* SimpleMemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE9531E613F3900638C21 /* SimpleMemo.xcdatamodeld */; };
 		F4BBE9571E613F3900638C21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4BBE9561E613F3900638C21 /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 		7AC2BE1B2C769D751B9D10E6 /* Pods_SimpleMemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleMemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F76F7EDC39356F26F1CB2C8 /* Pods-SimpleMemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleMemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleMemo/Pods-SimpleMemo.release.xcconfig"; sourceTree = "<group>"; };
 		F4A0414D1E618CA00012EAEF /* PrintLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintLog.swift; sourceTree = "<group>"; };
+		F4A0414F1E618F910012EAEF /* MemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		F4BBE9491E613F3900638C21 /* SimpleMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4BBE94C1E613F3900638C21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4BBE9541E613F3900638C21 /* SimpleMemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SimpleMemo.xcdatamodel; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			children = (
 				F4BBE9761E61531C00638C21 /* MemoCollectionViewController.swift */,
 				F4BBE9771E61531C00638C21 /* MemoListViewController.swift */,
+				F4A0414F1E618F910012EAEF /* MemoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				F4BBE9471E613F3900638C21 /* Resources */,
 				447B5140E90545996BB12F2C /* [CP] Embed Pods Frameworks */,
 				D6F1E635F79FA55E10578B36 /* [CP] Copy Pods Resources */,
+				F4A041511E618FF40012EAEF /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -378,6 +382,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleMemo/Pods-SimpleMemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F4A041511E618FF40012EAEF /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -387,6 +405,7 @@
 			files = (
 				F4BBE98A1E6164D100638C21 /* CoreDataStack.swift in Sources */,
 				F4A0414E1E618CA00012EAEF /* PrintLog.swift in Sources */,
+				F4A041501E618F910012EAEF /* MemoViewController.swift in Sources */,
 				F4BBE9791E61531C00638C21 /* MemoListViewController.swift in Sources */,
 				F4BBE9961E6182C400638C21 /* Memo.swift in Sources */,
 				F4BBE9901E616E2700638C21 /* MemoLabel.swift in Sources */,

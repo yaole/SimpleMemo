@@ -37,9 +37,9 @@ class MemoListViewController: MemoCollectionViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    do{
+    do {
       try fetchedResultsController.performFetch()
-    }catch {
+    } catch {
       if let error = error as NSError? {
         fatalError("Unresolved error \(error), \(error.userInfo)")
       }
@@ -60,6 +60,7 @@ extension MemoListViewController {
 
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
+    // swiftlint:disable:next force_cast
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MemoCell.self), for: indexPath) as! MemoCell
 
     let memo = fetchedResultsController.object(at: indexPath)
@@ -70,7 +71,6 @@ extension MemoListViewController {
       // .Destructive 需要谨慎操作的工作,文字会自动设为红色
       alert.addAction(UIAlertAction(title: "删除", style: UIAlertActionStyle.destructive, handler: { (action) -> Void in
         // TODO: delete handle
-        
       }))
       self.present(alert, animated: true, completion: nil)
     }

@@ -16,7 +16,7 @@ class MemoCollectionViewController: UICollectionViewController {
   let flowLayout = UICollectionViewFlowLayout()
   var totalLie: Int = 0
 
-  init(){
+  init() {
     super.init(collectionViewLayout: flowLayout)
   }
 
@@ -42,7 +42,7 @@ class MemoCollectionViewController: UICollectionViewController {
     NotificationCenter.default.removeObserver(self)
   }
 
-  fileprivate func setFlowLayout(){
+  fileprivate func setFlowLayout() {
     flowLayout.minimumInteritemSpacing = margin
     flowLayout.minimumLineSpacing = margin
     flowLayout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
@@ -50,7 +50,7 @@ class MemoCollectionViewController: UICollectionViewController {
   }
 
   // MARK: - 计算列数,监听屏幕旋转,布局
-  fileprivate func totalCorBystatusBarOrientation() -> Int{
+  fileprivate func totalCorBystatusBarOrientation() -> Int {
     let model = UIDevice.current.model
     let orientation = UIApplication.shared.statusBarOrientation
 
@@ -58,20 +58,20 @@ class MemoCollectionViewController: UICollectionViewController {
     case .landscapeLeft, .landscapeRight:
       if model == "iPhone Simulator" || model == "iPhone" || model == "iPod touch"{
         return 3
-      }else {
+      } else {
         return 4
       }
     case .portrait, .portraitUpsideDown:
       if model == "iPhone Simulator" || model == "iPhone" || model == "iPod touch"{
         return 2
-      }else {
+      } else {
         return 3
       }
     default: return 2
     }
   }
 
-  fileprivate func layoutCollcetionCell(){
+  fileprivate func layoutCollcetionCell() {
     totalLie = totalCorBystatusBarOrientation()
     itemWidth = (collectionView!.bounds.width - CGFloat(totalLie + 1) * margin) / CGFloat(totalLie)
     flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth)
@@ -83,4 +83,3 @@ class MemoCollectionViewController: UICollectionViewController {
   }
 
 }
-

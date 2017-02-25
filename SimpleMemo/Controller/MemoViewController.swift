@@ -1,0 +1,140 @@
+//
+//  MemoViewController.swift
+//  EverMemo
+//
+//  Created by  李俊 on 15/8/5.
+//  Copyright (c) 2015年  李俊. All rights reserved.
+//
+
+import UIKit
+import CoreData
+
+class MemoViewController: UIViewController, UITextViewDelegate {
+
+  let textView = UITextView()
+  var memo: Memo?
+  var textViewBottomConstraint: NSLayoutConstraint?
+  var sharedItem: UIBarButtonItem!
+  var isTextChanged = false
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    setUI()
+    setTextView()
+    textViewAttrubt()
+
+    NotificationCenter.default.addObserver(self, selector: #selector(changeLayOut(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+  }
+
+  // MARK: - 监听键盘的改变
+  func changeLayOut(_ notification: Notification) {
+    let userInfo = notification.userInfo!
+    let keyboarFrame: Any? = userInfo[UIKeyboardFrameEndUserInfoKey]
+    let frame = (keyboarFrame as AnyObject).cgRectValue
+    let keyboardY = frame?.origin.y
+    textViewBottomConstraint!.constant = -(view.bounds.size.height - keyboardY! + 5)
+  }
+
+  // MARK: - 设置视图控件
+  fileprivate func setUI() {
+    view.backgroundColor = UIColor.white
+    sharedItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action: #selector(MemoViewController.perpormShare(_:)))
+    navigationItem.rightBarButtonItem = sharedItem
+    if memo == nil {
+      title = "新便签"
+      textView.becomeFirstResponder()
+      sharedItem.isEnabled = false
+    } else {
+      textView.text = memo!.text
+    }
+
+  }
+
+  /// 分享
+  func perpormShare(_ barButton: UIBarButtonItem) {
+    let activityController = UIActivityViewController(activityItems: [textView.text], applicationActivities: nil)
+    let drivce = UIDevice.current
+    let model = drivce.model
+    if model == "iPhone Simulator" || model == "iPhone" || model == "iPod touch"{
+      present(activityController, animated: true, completion: nil)
+    } else {
+      let popoverView =  UIPopoverController(contentViewController: activityController)
+      popoverView.present(from: barButton, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
+    }
+
+  }
+
+  fileprivate func setTextView() {
+    textView.delegate = self
+    textView.layoutManager.allowsNonContiguousLayout = false
+    textView.keyboardDismissMode = .interactive
+    textView.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(textView)
+
+    view.addConstraint(NSLayoutConstraint(item: textView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0))
+    view.addConstraint(NSLayoutConstraint(item: textView, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 5))
+    view.addConstraint(NSLayoutConstraint(item: textView, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: -5))
+    view.addConstraint(NSLayoutConstraint(item: textView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -5))
+    let constraints = view.constraints
+    textViewBottomConstraint = constraints.last
+  }
+
+  fileprivate func textViewAttrubt() {
+    let paregraphStyle = NSMutableParagraphStyle()
+    paregraphStyle.lineSpacing = 5
+    let attributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 16), NSParagraphStyleAttributeName: paregraphStyle]
+    textView.typingAttributes = attributes
+    textView.font = UIFont.systemFont(ofSize: 16)
+  }
+
+  // MARK: - 视图消失时,
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+
+    view.endEditing(true)
+    if textView.text.isEmpty && memo != nil {
+//      memo!.deleteFromEvernote()
+//      CoreDataStack.shardedCoredataStack.managedObjectContext?.delete(memo!)
+    }
+
+//    CoreDataStack.shardedCoredataStack.saveContext()
+  }
+
+  // MARK: - 上传便签到印象笔记
+
+  fileprivate func uploadMemoToEvernote() {
+
+    if textView.text.isEmpty {
+
+      return
+    }
+
+//    memo?.uploadToEvernote()
+  }
+
+  //    func scrollViewDidScroll(scrollView: UIScrollView) {
+  //
+  //        println(scrollView.contentOffset.y)
+  //
+  //    }
+
+  // MARK: - UITextViewDelegate
+  func textViewDidChange(_ textView: UITextView) {
+
+    isTextChanged = true
+
+    memo?.isUpload = false
+    sharedItem.isEnabled = !textView.text.isEmpty
+
+//    memo = (memo == nil) ? CoreDataStack.shardedCoredataStack.creatMemo() : memo
+//
+//    memo!.text = textView.text
+//
+//    memo!.changeDate = Date()
+//
+//    CoreDataStack.shardedCoredataStack.saveContext()
+
+  }
+
+}
