@@ -87,50 +87,33 @@ class MemoViewController: UIViewController, UITextViewDelegate {
   // MARK: - 视图消失时,
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-
     view.endEditing(true)
-    if textView.text.isEmpty && memo != nil {
+    if let memo = memo, textView.text.isEmpty {
 //      memo!.deleteFromEvernote()
-//      CoreDataStack.shardedCoredataStack.managedObjectContext?.delete(memo!)
+      CoreDataStack.default.managedContext.delete(memo)
     }
-
-//    CoreDataStack.shardedCoredataStack.saveContext()
+    CoreDataStack.default.saveContext()
   }
 
   // MARK: - 上传便签到印象笔记
 
   fileprivate func uploadMemoToEvernote() {
-
     if textView.text.isEmpty {
-
       return
     }
-
 //    memo?.uploadToEvernote()
   }
 
-  //    func scrollViewDidScroll(scrollView: UIScrollView) {
-  //
-  //        println(scrollView.contentOffset.y)
-  //
-  //    }
-
   // MARK: - UITextViewDelegate
+
   func textViewDidChange(_ textView: UITextView) {
-
     isTextChanged = true
-
     memo?.isUpload = false
     sharedItem.isEnabled = !textView.text.isEmpty
-
-//    memo = (memo == nil) ? CoreDataStack.shardedCoredataStack.creatMemo() : memo
-//
-//    memo!.text = textView.text
-//
-//    memo!.changeDate = Date()
-//
-//    CoreDataStack.shardedCoredataStack.saveContext()
-
+    memo = memo ?? Memo.newMemo()
+    memo!.text = textView.text
+    memo!.updateDate = Date()
+    CoreDataStack.default.saveContext()
   }
 
 }

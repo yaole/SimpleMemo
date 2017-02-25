@@ -48,6 +48,7 @@ class MemoListViewController: MemoCollectionViewController {
     let sortDescriptor = NSSortDescriptor(key: "updateDate", ascending: false)
     request.sortDescriptors = [sortDescriptor]
     let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.default.managedContext, sectionNameKeyPath: nil, cacheName: nil)
+    controller.delegate = self
     return controller
   }()
 
@@ -169,7 +170,7 @@ private extension MemoListViewController {
 
   /// 新memo
   @objc func addMemo() {
-
+    navigationController?.pushViewController(MemoViewController(), animated: true)
   }
 
 }
@@ -214,6 +215,34 @@ extension MemoListViewController: UISearchBarDelegate {
 
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     searchBar.resignFirstResponder()
+  }
+
+}
+
+// MARK: - NSFetchedResultsControllerDelegate
+
+extension MemoListViewController: NSFetchedResultsControllerDelegate {
+
+  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+
+    // 如果处于搜索状态, 内容更新了,就重新搜索,重新加载数据
+    if isSearching, let searchText = searchBar.text {
+      fetchSearchResults(searchText)
+      collectionView?.reloadData()
+      return
+    }
+
+    switch type {
+    case .insert:
+      collectionView?.insertItems(at: [newIndexPath!])
+    case .update:
+      collectionView?.reloadItems(at: [indexPath!])
+    case .delete:
+      collectionView?.deleteItems(at: [indexPath!])
+    case .move:
+      collectionView?.moveItem(at: indexPath!, to:newIndexPath!)
+      collectionView?.reloadItems(at: [newIndexPath!])
+    }
   }
 
 }
