@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Memo" representedClassName="Memo" syncable="YES" codeGenerationType="class">
-        <attribute name="createDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="isUpload" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="noteRef" optional="YES" attributeType="Transformable" customClassName="ENNoteRef" syncable="YES"/>
-        <attribute name="text" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+    <entity name="Memo" representedClassName="Memo" syncable="YES">
+        <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isUpload" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="noteRef" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updateDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Memo" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Memo" positionX="-36" positionY="9" width="128" height="120"/>
     </elements>
 </model>

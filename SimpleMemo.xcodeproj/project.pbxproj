@@ -20,6 +20,9 @@
 		F4BBE98C1E6169F700638C21 /* DefaultMemos.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4BBE98B1E6169F700638C21 /* DefaultMemos.plist */; };
 		F4BBE98E1E616DDD00638C21 /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE98D1E616DDD00638C21 /* MemoCell.swift */; };
 		F4BBE9901E616E2700638C21 /* MemoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE98F1E616E2700638C21 /* MemoLabel.swift */; };
+		F4BBE9921E617C5900638C21 /* MemoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE9911E617C5900638C21 /* MemoExtension.swift */; };
+		F4BBE9951E6182C400638C21 /* Memo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE9931E6182C400638C21 /* Memo+CoreDataClass.swift */; };
+		F4BBE9961E6182C400638C21 /* Memo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE9941E6182C400638C21 /* Memo+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		F4BBE98B1E6169F700638C21 /* DefaultMemos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultMemos.plist; sourceTree = "<group>"; };
 		F4BBE98D1E616DDD00638C21 /* MemoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
 		F4BBE98F1E616E2700638C21 /* MemoLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoLabel.swift; sourceTree = "<group>"; };
+		F4BBE9911E617C5900638C21 /* MemoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoExtension.swift; sourceTree = "<group>"; };
+		F4BBE9931E6182C400638C21 /* Memo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Memo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F4BBE9941E6182C400638C21 /* Memo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Memo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +169,10 @@
 		F4BBE9881E61648F00638C21 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				F4BBE9931E6182C400638C21 /* Memo+CoreDataClass.swift */,
+				F4BBE9941E6182C400638C21 /* Memo+CoreDataProperties.swift */,
 				F4BBE9891E6164D100638C21 /* CoreDataStack.swift */,
+				F4BBE9911E617C5900638C21 /* MemoExtension.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -372,7 +381,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4BBE98A1E6164D100638C21 /* CoreDataStack.swift in Sources */,
+				F4BBE9921E617C5900638C21 /* MemoExtension.swift in Sources */,
 				F4BBE9791E61531C00638C21 /* MemoListViewController.swift in Sources */,
+				F4BBE9961E6182C400638C21 /* Memo+CoreDataProperties.swift in Sources */,
+				F4BBE9951E6182C400638C21 /* Memo+CoreDataClass.swift in Sources */,
 				F4BBE9901E616E2700638C21 /* MemoLabel.swift in Sources */,
 				F4BBE9781E61531C00638C21 /* MemoCollectionViewController.swift in Sources */,
 				F4BBE9551E613F3900638C21 /* SimpleMemo.xcdatamodeld in Sources */,

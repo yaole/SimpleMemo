@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import EvernoteSDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,7 +26,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     loadDefaultMemos()
 
+    let CONSUMER_KEY = "likumb-0974"
+    let CONSUMER_SECRET = "xxx"
+    ENSession.setSharedSessionConsumerKey(CONSUMER_KEY, consumerSecret: CONSUMER_SECRET, optionalHost: nil)
+
     return true
+  }
+
+  func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+    let didHandle = ENSession.shared.handleOpenURL(url)
+    return didHandle
   }
 
   func applicationDidEnterBackground(_ application: UIApplication) {
@@ -55,7 +65,7 @@ private extension AppDelegate {
     }
     let memos = NSArray(contentsOfFile: path) as! [String]
     for memoText in memos {
-      let memo = CoreDataStack.default.createMemo()
+      let memo = Memo.newMemo()
       memo.text = memoText
       CoreDataStack.default.saveContext()
     }

@@ -39,14 +39,3 @@ class CoreDataStack {
   }
 
 }
-
-extension CoreDataStack {
-
-  func createMemo() -> Memo {
-    let entityDescription = NSEntityDescription.entity(forEntityName: "Memo", in: managedContext)
-    let memo = Memo(entity: entityDescription!, insertInto: managedContext)
-    memo.createDate = Date()
-    memo.isUpload = false
-    return memo
-  }
-}
