@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 import EvernoteSDK
 
+@objc(Memo)
 public class Memo: NSManagedObject {
 
   @NSManaged public var text: String?
