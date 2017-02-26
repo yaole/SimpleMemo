@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import EvernoteSDK
 import SnapKit
+import SMKit
 
 class MemoViewController: UIViewController {
 
@@ -50,6 +51,8 @@ class MemoViewController: UIViewController {
 
 }
 
+// MARK: - Private extension
+
 private extension MemoViewController {
 
   func setUI() {
@@ -62,6 +65,7 @@ private extension MemoViewController {
       textView.becomeFirstResponder()
       sharedItem.isEnabled = false
     } else {
+      title = memo!.text?.fetchTitle()
       textView.text = memo!.text
     }
   }
@@ -91,6 +95,7 @@ private extension MemoViewController {
     let attributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 16), NSParagraphStyleAttributeName: paregraphStyle]
     textView.typingAttributes = attributes
     textView.font = UIFont.systemFont(ofSize: 16)
+    textView.textColor = SMColor.content
   }
 
   @objc func perpormShare(_ barButton: UIBarButtonItem) {
@@ -116,6 +121,7 @@ private extension MemoViewController {
 // MARK: - UITextViewDelegate
 
 extension MemoViewController: UITextViewDelegate {
+
   func textViewDidChange(_ textView: UITextView) {
     isTextChanged = true
     memo?.isUpload = false
@@ -125,4 +131,5 @@ extension MemoViewController: UITextViewDelegate {
     memo!.updateDate = Date()
     CoreDataStack.default.saveContext()
   }
+
 }

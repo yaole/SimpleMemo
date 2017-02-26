@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import SMKit
 
 class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 
@@ -15,20 +16,20 @@ class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
   var memo: Memo? {
     didSet {
       contentLabel.text = memo!.text
-      contentLabel.preferredMaxLayoutWidth = itemWidth - 2 * margin
     }
   }
 
   private let contentLabel: MemoLabel = {
     let label = MemoLabel()
     label.numberOfLines = 0
-    label.preferredMaxLayoutWidth = itemWidth - 2 * margin
     label.font = UIFont.systemFont(ofSize: 15)
     label.verticalAlignment = .top
+    label.textColor = SMColor.content
     label.sizeToFit()
     return label
   }()
   private var getsureRecognizer: UIGestureRecognizer?
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     backgroundColor = UIColor.white

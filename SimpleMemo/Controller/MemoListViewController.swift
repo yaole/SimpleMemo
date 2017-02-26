@@ -9,8 +9,9 @@
 import UIKit
 import CoreData
 import EvernoteSDK
+import SMKit
 
-private let backgroundColor = UIColor(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1)
+private let backgroundColor = UIColor(r: 245, g: 245, b: 245)
 
 class MemoListViewController: MemoCollectionViewController {
 
@@ -22,7 +23,8 @@ class MemoListViewController: MemoCollectionViewController {
   fileprivate lazy var titleLabel: UILabel = {
     let label = UILabel()
     label.text = "便签"
-    label.font = UIFont.systemFont(ofSize: 17)
+    label.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightMedium)
+    label.textColor = SMColor.title
     label.sizeToFit()
     return label
   }()
@@ -121,11 +123,11 @@ private extension MemoListViewController {
   func setNavigationBar() {
     navigationItem.titleView = titleLabel
     navigationItem.rightBarButtonItems = [addItem]
-    evernoteItem.tintColor = ENSession.shared.isAuthenticated ? UIColor(red: 23/255.0, green: 127/255.0, blue: 251/255.0, alpha: 1) : UIColor.gray
+    evernoteItem.tintColor = ENSession.shared.isAuthenticated ? SMColor.tint : UIColor.gray
     navigationItem.leftBarButtonItems = [evernoteItem, searchItem]
   }
 
-  /// 印象笔记登录注销
+  /// evernoteAuthenticate
   @objc func evernoteAuthenticate() {
     if ENSession.shared.isAuthenticated {
       let alert = UIAlertController(title: "退出印象笔记?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
@@ -138,7 +140,7 @@ private extension MemoListViewController {
     } else {
       ENSession.shared.authenticate(with: self, preferRegistration: false, completion: { error in
         if error == nil {
-          self.evernoteItem.tintColor = UIColor(red: 23/255.0, green: 127/255.0, blue: 251/255.0, alpha: 1)
+          self.evernoteItem.tintColor = SMColor.tint
         } else {
           printLog(message: error.debugDescription)
         }
@@ -167,7 +169,7 @@ private extension MemoListViewController {
       margin = 10
     }
 
-    searchBar.frame = CGRect(x: 0, y: 0, width: searchView.bounds.width - margin, height: searchView.bounds.height)
+    searchBar.frame = CGRect(x: 0, y: 0, width: searchView.width - margin, height: searchView.height)
     searchBar.becomeFirstResponder()
     isSearching = true
     if !searchBar.text!.isEmpty {

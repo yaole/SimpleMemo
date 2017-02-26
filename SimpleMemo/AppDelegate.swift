@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import EvernoteSDK
+import SMKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // Need a `EvernoteKey.swift` file, and init `evernoteKey` and `evernoteSecret`.
     ENSession.setSharedSessionConsumerKey(evernoteKey, consumerSecret: evernoteSecret, optionalHost: nil)
+
+    UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: SMColor.title]
 
     return true
   }
