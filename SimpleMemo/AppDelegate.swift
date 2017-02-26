@@ -27,9 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     loadDefaultMemos()
 
-    let CONSUMER_KEY = "likumb-0974"
-    let CONSUMER_SECRET = "xxx"
-    ENSession.setSharedSessionConsumerKey(CONSUMER_KEY, consumerSecret: CONSUMER_SECRET, optionalHost: nil)
+    // Need a `EvernoteKey.swift` file, and init `evernoteKey` and `evernoteSecret`.
+    ENSession.setSharedSessionConsumerKey(evernoteKey, consumerSecret: evernoteSecret, optionalHost: nil)
 
     return true
   }

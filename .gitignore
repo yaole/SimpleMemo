@@ -8,6 +8,8 @@ DerivedData
 
 .DS_Store
 Pods/
+Secret/
+
 ## Various settings
 *.pbxuser
 !default.pbxuser
