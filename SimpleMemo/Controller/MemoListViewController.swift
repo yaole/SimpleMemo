@@ -96,7 +96,7 @@ extension MemoListViewController {
 
     let memo = isSearching ? searchResults[indexPath.row] : fetchedResultsController.object(at: indexPath)
     cell.memo = memo
-    cell.deleteMemo = { memo in
+    cell.deleteMemoAction = { memo in
       let alert = UIAlertController(title: "删除便签", message: nil, preferredStyle: UIAlertControllerStyle.alert)
       alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: nil))
       alert.addAction(UIAlertAction(title: "删除", style: UIAlertActionStyle.destructive, handler: { (action) -> Void in
@@ -106,15 +106,13 @@ extension MemoListViewController {
       }))
       self.present(alert, animated: true, completion: nil)
     }
-    return cell
-  }
 
-  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    searchBar.resignFirstResponder()
-    let memo = isSearching ? searchResults[indexPath.row] : fetchedResultsController.object(at: indexPath)
-    let MemoView = MemoViewController()
-    MemoView.memo = memo
-    navigationController?.pushViewController(MemoView, animated: true)
+    cell.didSelectedMemoAction = { memo in
+      let MemoView = MemoViewController()
+      MemoView.memo = memo
+      self.navigationController?.pushViewController(MemoView, animated: true)
+    }
+    return cell
   }
 }
 
