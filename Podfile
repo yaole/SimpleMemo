@@ -6,7 +6,7 @@ use_frameworks!
 
 target 'SimpleMemo' do
 	
-	pod 'EvernoteSDK',  :git => 'https://github.com/evernote/evernote-cloud-sdk-ios'
+	pod 'EvernoteSDK',  :git => 'https://github.com/evernote/evernote-cloud-sdk-ios.git'
   pod 'SnapKit', '~> 3.2.0'
 	
 	target 'SimpleMemoTests' do

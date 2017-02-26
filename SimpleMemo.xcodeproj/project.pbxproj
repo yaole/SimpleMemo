@@ -18,19 +18,20 @@
 		F4351DC01E628562001FE8A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4351DBF1E628562001FE8A9 /* Foundation.framework */; };
 		F4351DC21E628735001FE8A9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4351DC11E628735001FE8A9 /* UIView+Extension.swift */; };
 		F4351DC41E628C2D001FE8A9 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4351DC31E628C2D001FE8A9 /* Appearance.swift */; };
+		F4351DCF1E62CC62001FE8A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4351DC61E62CC62001FE8A9 /* Assets.xcassets */; };
+		F4351DD01E62CC62001FE8A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4351DC71E62CC62001FE8A9 /* LaunchScreen.storyboard */; };
+		F4351DD11E62CC62001FE8A9 /* DefaultMemos.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4351DC91E62CC62001FE8A9 /* DefaultMemos.plist */; };
+		F4351DD31E62CC62001FE8A9 /* SimpleMemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4351DCB1E62CC62001FE8A9 /* SimpleMemo.xcdatamodeld */; };
+		F4351DD41E62CC62001FE8A9 /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4351DCD1E62CC62001FE8A9 /* LaunchScreen.strings */; };
 		F4A0414E1E618CA00012EAEF /* PrintLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A0414D1E618CA00012EAEF /* PrintLog.swift */; };
 		F4A041501E618F910012EAEF /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A0414F1E618F910012EAEF /* MemoViewController.swift */; };
 		F4A041531E61A3020012EAEF /* String+FetchTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A041521E61A3020012EAEF /* String+FetchTitle.swift */; };
 		F4A041551E61A3A90012EAEF /* Evernote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A041541E61A3A90012EAEF /* Evernote.swift */; };
 		F4BBE94D1E613F3900638C21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE94C1E613F3900638C21 /* AppDelegate.swift */; };
-		F4BBE9551E613F3900638C21 /* SimpleMemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE9531E613F3900638C21 /* SimpleMemo.xcdatamodeld */; };
-		F4BBE9571E613F3900638C21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4BBE9561E613F3900638C21 /* Assets.xcassets */; };
-		F4BBE95A1E613F3900638C21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4BBE9581E613F3900638C21 /* LaunchScreen.storyboard */; };
 		F4BBE9651E613F3900638C21 /* SimpleMemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE9641E613F3900638C21 /* SimpleMemoTests.swift */; };
 		F4BBE9781E61531C00638C21 /* MemoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE9761E61531C00638C21 /* MemoCollectionViewController.swift */; };
 		F4BBE9791E61531C00638C21 /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE9771E61531C00638C21 /* MemoListViewController.swift */; };
 		F4BBE98A1E6164D100638C21 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE9891E6164D100638C21 /* CoreDataStack.swift */; };
-		F4BBE98C1E6169F700638C21 /* DefaultMemos.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4BBE98B1E6169F700638C21 /* DefaultMemos.plist */; };
 		F4BBE98E1E616DDD00638C21 /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE98D1E616DDD00638C21 /* MemoCell.swift */; };
 		F4BBE9901E616E2700638C21 /* MemoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE98F1E616E2700638C21 /* MemoLabel.swift */; };
 		F4BBE9961E6182C400638C21 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBE9941E6182C400638C21 /* Memo.swift */; };
@@ -83,24 +84,24 @@
 		F4351DBF1E628562001FE8A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F4351DC11E628735001FE8A9 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		F4351DC31E628C2D001FE8A9 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+		F4351DC61E62CC62001FE8A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F4351DC81E62CC62001FE8A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F4351DC91E62CC62001FE8A9 /* DefaultMemos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultMemos.plist; sourceTree = "<group>"; };
+		F4351DCA1E62CC62001FE8A9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4351DCC1E62CC62001FE8A9 /* SimpleMemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SimpleMemo.xcdatamodel; sourceTree = "<group>"; };
+		F4351DCE1E62CC62001FE8A9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F4A0414D1E618CA00012EAEF /* PrintLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintLog.swift; sourceTree = "<group>"; };
 		F4A0414F1E618F910012EAEF /* MemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		F4A041521E61A3020012EAEF /* String+FetchTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+FetchTitle.swift"; sourceTree = "<group>"; };
 		F4A041541E61A3A90012EAEF /* Evernote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Evernote.swift; sourceTree = "<group>"; };
 		F4BBE9491E613F3900638C21 /* SimpleMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4BBE94C1E613F3900638C21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F4BBE9541E613F3900638C21 /* SimpleMemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SimpleMemo.xcdatamodel; sourceTree = "<group>"; };
-		F4BBE9561E613F3900638C21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F4BBE9591E613F3900638C21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F4BBE95B1E613F3900638C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4BBE9601E613F3900638C21 /* SimpleMemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleMemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4BBE9641E613F3900638C21 /* SimpleMemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMemoTests.swift; sourceTree = "<group>"; };
 		F4BBE9661E613F3900638C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F4BBE9701E613FC500638C21 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F4BBE9761E61531C00638C21 /* MemoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoCollectionViewController.swift; sourceTree = "<group>"; };
 		F4BBE9771E61531C00638C21 /* MemoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
 		F4BBE9891E6164D100638C21 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		F4BBE98B1E6169F700638C21 /* DefaultMemos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultMemos.plist; sourceTree = "<group>"; };
 		F4BBE98D1E616DDD00638C21 /* MemoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
 		F4BBE98F1E616E2700638C21 /* MemoLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoLabel.swift; sourceTree = "<group>"; };
 		F4BBE9941E6182C400638C21 /* Memo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
@@ -178,6 +179,19 @@
 			path = SMKit;
 			sourceTree = "<group>";
 		};
+		F4351DC51E62CC62001FE8A9 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				F4351DC61E62CC62001FE8A9 /* Assets.xcassets */,
+				F4351DC71E62CC62001FE8A9 /* LaunchScreen.storyboard */,
+				F4351DC91E62CC62001FE8A9 /* DefaultMemos.plist */,
+				F4351DCA1E62CC62001FE8A9 /* Info.plist */,
+				F4351DCB1E62CC62001FE8A9 /* SimpleMemo.xcdatamodeld */,
+				F4351DCD1E62CC62001FE8A9 /* LaunchScreen.strings */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		F4A0414C1E618C900012EAEF /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,11 +233,7 @@
 				F4BBE9881E61648F00638C21 /* CoreData */,
 				F4A0414C1E618C900012EAEF /* Util */,
 				F4351DA61E62792C001FE8A9 /* Secret */,
-				F4BBE9561E613F3900638C21 /* Assets.xcassets */,
-				F4BBE9581E613F3900638C21 /* LaunchScreen.storyboard */,
-				F4BBE95B1E613F3900638C21 /* Info.plist */,
-				F4BBE9531E613F3900638C21 /* SimpleMemo.xcdatamodeld */,
-				F4BBE98B1E6169F700638C21 /* DefaultMemos.plist */,
+				F4351DC51E62CC62001FE8A9 /* Resource */,
 			);
 			path = SimpleMemo;
 			sourceTree = "<group>";
@@ -376,6 +386,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = F4BBE9401E613F3900638C21;
 			productRefGroup = F4BBE94A1E613F3900638C21 /* Products */;
@@ -401,9 +412,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4BBE95A1E613F3900638C21 /* LaunchScreen.storyboard in Resources */,
-				F4BBE9571E613F3900638C21 /* Assets.xcassets in Resources */,
-				F4BBE98C1E6169F700638C21 /* DefaultMemos.plist in Resources */,
+				F4351DD11E62CC62001FE8A9 /* DefaultMemos.plist in Resources */,
+				F4351DCF1E62CC62001FE8A9 /* Assets.xcassets in Resources */,
+				F4351DD01E62CC62001FE8A9 /* LaunchScreen.storyboard in Resources */,
+				F4351DD41E62CC62001FE8A9 /* LaunchScreen.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,10 +555,10 @@
 				F4A0414E1E618CA00012EAEF /* PrintLog.swift in Sources */,
 				F4A041501E618F910012EAEF /* MemoViewController.swift in Sources */,
 				F4BBE9791E61531C00638C21 /* MemoListViewController.swift in Sources */,
+				F4351DD31E62CC62001FE8A9 /* SimpleMemo.xcdatamodeld in Sources */,
 				F4BBE9961E6182C400638C21 /* Memo.swift in Sources */,
 				F4BBE9901E616E2700638C21 /* MemoLabel.swift in Sources */,
 				F4BBE9781E61531C00638C21 /* MemoCollectionViewController.swift in Sources */,
-				F4BBE9551E613F3900638C21 /* SimpleMemo.xcdatamodeld in Sources */,
 				F4351DA81E627942001FE8A9 /* EvernoteKey.swift in Sources */,
 				F4BBE94D1E613F3900638C21 /* AppDelegate.swift in Sources */,
 				F4A041531E61A3020012EAEF /* String+FetchTitle.swift in Sources */,
@@ -578,13 +590,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F4BBE9581E613F3900638C21 /* LaunchScreen.storyboard */ = {
+		F4351DC71E62CC62001FE8A9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F4BBE9591E613F3900638C21 /* Base */,
-				F4BBE9701E613FC500638C21 /* zh-Hans */,
+				F4351DC81E62CC62001FE8A9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F4351DCD1E62CC62001FE8A9 /* LaunchScreen.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4351DCE1E62CC62001FE8A9 /* zh-Hans */,
+			);
+			name = LaunchScreen.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -738,10 +757,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 39039D2E42EEBF15060D08AF /* Pods-SimpleMemo.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SS76CD8QRS;
-				INFOPLIST_FILE = SimpleMemo/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SimpleMemo/Resource/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.likumb.Memo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -753,10 +772,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9F76F7EDC39356F26F1CB2C8 /* Pods-SimpleMemo.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SS76CD8QRS;
-				INFOPLIST_FILE = SimpleMemo/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SimpleMemo/Resource/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.likumb.Memo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -804,6 +823,7 @@
 				F4351DB81E6284C5001FE8A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4BBE9441E613F3900638C21 /* Build configuration list for PBXProject "SimpleMemo" */ = {
 			isa = XCConfigurationList;
@@ -835,12 +855,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		F4BBE9531E613F3900638C21 /* SimpleMemo.xcdatamodeld */ = {
+		F4351DCB1E62CC62001FE8A9 /* SimpleMemo.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				F4BBE9541E613F3900638C21 /* SimpleMemo.xcdatamodel */,
+				F4351DCC1E62CC62001FE8A9 /* SimpleMemo.xcdatamodel */,
 			);
-			currentVersion = F4BBE9541E613F3900638C21 /* SimpleMemo.xcdatamodel */;
+			currentVersion = F4351DCC1E62CC62001FE8A9 /* SimpleMemo.xcdatamodel */;
 			path = SimpleMemo.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
