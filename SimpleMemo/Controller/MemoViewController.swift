@@ -112,8 +112,8 @@ private extension MemoViewController {
 
   @objc func changeLayOut(_ notification: Notification) {
     let keyboarFrame: CGRect? = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect
-    let keyboardHeight = keyboarFrame?.height ?? 0
-    setTextViewConstraints(withBottomOffset: -keyboardHeight - 5)
+    let keyboardY = keyboarFrame?.origin.y ?? 0
+    setTextViewConstraints(withBottomOffset: -(view.bounds.size.height - keyboardY + 5))
   }
 
 }

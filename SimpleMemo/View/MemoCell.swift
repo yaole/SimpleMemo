@@ -18,7 +18,7 @@ class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
   var deleteMemoAction: ((_ memo: Memo) -> Void)?
   var memo: Memo? {
     didSet {
-      contentLabel.text = memo!.text
+      contentLabel.text = memo?.text
     }
   }
 
