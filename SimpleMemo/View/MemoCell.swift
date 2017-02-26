@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 
@@ -48,12 +49,12 @@ class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 
   private func setUI() {
     contentView.addSubview(contentLabel)
-    contentLabel.translatesAutoresizingMaskIntoConstraints = false
-
-    contentView.addConstraint(NSLayoutConstraint(item: contentLabel, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 5))
-    contentView.addConstraint(NSLayoutConstraint(item: contentLabel, attribute: .left, relatedBy: .equal, toItem: contentView, attribute: .left, multiplier: 1, constant: 5))
-    contentView.addConstraint(NSLayoutConstraint(item: contentLabel, attribute: .right, relatedBy: .equal, toItem: contentView, attribute: .right, multiplier: 1, constant: -5))
-    contentView.addConstraint(NSLayoutConstraint(item: contentLabel, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: -5))
+    contentLabel.snp.makeConstraints { (maker) in
+      maker.top.equalTo(contentView).offset(5)
+      maker.left.equalTo(contentView).offset(5)
+      maker.bottom.equalTo(contentView).offset(-5)
+      maker.right.equalTo(contentView).offset(-5)
+    }
   }
 
   @objc private func longPress() {

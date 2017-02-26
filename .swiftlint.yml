@@ -1,4 +1,5 @@
-
+included:
+    - SimpleMemo
 disabled_rules:
     - cyclomatic_complexity
     - line_length
