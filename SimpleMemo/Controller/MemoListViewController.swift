@@ -10,8 +10,10 @@ import UIKit
 import CoreData
 import EvernoteSDK
 import SMKit
+import SnapKit
 
 private let backgroundColor = UIColor(r: 245, g: 245, b: 245)
+private let addBtnSize: CGFloat = 55
 
 class MemoListViewController: MemoCollectionViewController {
 
@@ -20,6 +22,17 @@ class MemoListViewController: MemoCollectionViewController {
   fileprivate lazy var searchResults = [Memo]()
   fileprivate lazy var searchBar = UISearchBar()
 
+  fileprivate let addButton: UIButton = {
+    let button = UIButton(type: .custom)
+    let image = UIImage(named: "ic_add")?.withRenderingMode(.alwaysTemplate)
+    button.setImage(image, for: .normal)
+    button.tintColor = .white
+    button.backgroundColor = SMColor.tint
+    button.layer.cornerRadius = addBtnSize / 2
+    button.layer.masksToBounds = true
+    return button
+  }()
+
   fileprivate lazy var titleLabel: UILabel = {
     let label = UILabel()
     label.text = "便签"
@@ -27,11 +40,6 @@ class MemoListViewController: MemoCollectionViewController {
     label.textColor = SMColor.title
     label.sizeToFit()
     return label
-  }()
-
-  fileprivate lazy var addItem: UIBarButtonItem = {
-    let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(addMemo))
-    return item
   }()
 
   fileprivate lazy var evernoteItem: UIBarButtonItem = {
@@ -66,6 +74,13 @@ class MemoListViewController: MemoCollectionViewController {
     collectionView?.register(MemoCell.self, forCellWithReuseIdentifier: String(describing: MemoCell.self))
     setNavigationBar()
 
+    addButton.addTarget(self, action: #selector(addMemo), for: .touchUpInside)
+    view.addSubview(addButton)
+    addButton.snp.makeConstraints { (addBtn) in
+      addBtn.centerX.equalToSuperview()
+      addBtn.bottom.equalTo(view).offset(-30)
+      addBtn.size.equalTo(CGSize(width: addBtnSize, height: addBtnSize))
+    }
     if traitCollection.forceTouchCapability == .available {
       registerForPreviewing(with: self, sourceView: view)
     }
@@ -120,9 +135,9 @@ private extension MemoListViewController {
 
   func setNavigationBar() {
     navigationItem.titleView = titleLabel
-    navigationItem.rightBarButtonItems = [addItem]
     evernoteItem.tintColor = ENSession.shared.isAuthenticated ? SMColor.tint : UIColor.gray
-    navigationItem.leftBarButtonItems = [evernoteItem, searchItem]
+    navigationItem.rightBarButtonItem = searchItem
+    navigationItem.leftBarButtonItem = evernoteItem
   }
 
   /// evernoteAuthenticate
