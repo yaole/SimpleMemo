@@ -11,8 +11,9 @@ import SnapKit
 import SMKit
 
 private let deleteViewWidth: CGFloat = 60
+private let UIPanGestureRecognizerStateKeyPath = "state"
 
-class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
+class MemoCell: UICollectionViewCell {
 
   var didSelectedMemoAction: ((_ memo: Memo) -> Void)?
   var deleteMemoAction: ((_ memo: Memo) -> Void)?
@@ -22,6 +23,12 @@ class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     }
   }
 
+  fileprivate var containingView: UICollectionView? {
+    didSet {
+      updateContainingView()
+    }
+  }
+  fileprivate var containingViewPangestureRecognize: UIPanGestureRecognizer?
   fileprivate let scrollView = UIScrollView()
   fileprivate let deleteView = DeleteView()
   fileprivate let contentLabel: MemoLabel = {
@@ -41,6 +48,18 @@ class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     setUI()
   }
 
+  override func didMoveToSuperview() {
+    containingView = nil
+    var view: UIView = self
+    while let superview = view.superview {
+      view = superview
+      if let collectionView: UICollectionView = view as? UICollectionView {
+        containingView = collectionView
+        break
+      }
+    }
+  }
+
   override func layoutSubviews() {
     super.layoutSubviews()
     scrollView.contentSize = CGSize(width: contentView.width + deleteViewWidth, height: contentView.height)
@@ -49,6 +68,10 @@ class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 
   required init(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+
+  deinit {
+    removeObserver()
   }
 
   @objc fileprivate func topLabel() {
@@ -65,11 +88,33 @@ class MemoCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 
   override func prepareForReuse() {
     memo = nil
+    hiddenDeleteButton(withAnimated: false)
+  }
+
+  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    if keyPath == UIPanGestureRecognizerStateKeyPath &&
+      containingViewPangestureRecognize == object as? UIPanGestureRecognizer {
+      if containingViewPangestureRecognize?.state == .began {
+        hiddenDeleteButton(withAnimated: true)
+      }
+    }
   }
 }
 
 // MARK: - UI
 private extension MemoCell {
+
+  func updateContainingView() {
+    removeObserver()
+    if let collecionView = containingView {
+      containingViewPangestureRecognize = collecionView.panGestureRecognizer
+      containingViewPangestureRecognize?.addObserver(self, forKeyPath: UIPanGestureRecognizerStateKeyPath, options: .new, context: nil)
+    }
+  }
+
+  func removeObserver() {
+    containingViewPangestureRecognize?.removeObserver(self, forKeyPath: UIPanGestureRecognizerStateKeyPath)
+  }
 
   func setUI() {
     backgroundColor = UIColor.white
@@ -83,7 +128,6 @@ private extension MemoCell {
     }
 
     getsureRecognizer = UITapGestureRecognizer(target: self, action: #selector(topLabel))
-    getsureRecognizer?.delegate = self
     contentLabel.addGestureRecognizer(getsureRecognizer!)
     contentLabel.isUserInteractionEnabled = true
     scrollView.addSubview(contentLabel)
@@ -92,6 +136,7 @@ private extension MemoCell {
       maker.left.equalTo(scrollView).offset(5)
       maker.bottom.equalTo(contentView).offset(-5)
       maker.right.lessThanOrEqualTo(contentView).offset(-5)
+      maker.width.equalTo(contentView.width - 10)
     }
 
     deleteView.backgroundColor = SMColor.backgroundGray
@@ -126,6 +171,13 @@ extension MemoCell: UIScrollViewDelegate {
     let newX = offsetX < deleteViewWidth / 2 ? 0 : deleteViewWidth
     UIView.animate(withDuration: 0.1) {
       scrollView.contentOffset = CGPoint(x: newX, y: 0)
+    }
+  }
+
+  func hiddenDeleteButton(withAnimated animated: Bool) {
+    let duration: TimeInterval = animated ? 0.1 : 0
+    UIView.animate(withDuration: duration) {
+      self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
     }
   }
 }
