@@ -101,6 +101,7 @@ class MemoCell: UICollectionViewCell {
 
   @objc fileprivate func hiddenDeleteButtonAnimated() {
     hiddenDeleteButton(withAnimated: true)
+    hasCellShowDeleteBtn = false
   }
 
   override func prepareForReuse() {
