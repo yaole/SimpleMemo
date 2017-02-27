@@ -28,6 +28,7 @@ class MemoCell: UICollectionViewCell {
       updateContainingView()
     }
   }
+  fileprivate var hasCellShowDeleteBtn = false
   fileprivate var containingViewPangestureRecognize: UIPanGestureRecognizer?
   fileprivate let scrollView = UIScrollView()
   fileprivate let deleteView = DeleteView()
@@ -46,6 +47,8 @@ class MemoCell: UICollectionViewCell {
   override init(frame: CGRect) {
     super.init(frame: frame)
     setUI()
+    NotificationCenter.default.addObserver(self, selector: #selector(hiddenDeleteButtonAnimated), name: SMNotification.MemoCellShouldHiddenDeleteBtn, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(receiveMemoCellDidShowDeleteBtnNotification), name: SMNotification.MemoCellDidShowDeleteBtn, object: nil)
   }
 
   override func didMoveToSuperview() {
@@ -72,9 +75,15 @@ class MemoCell: UICollectionViewCell {
 
   deinit {
     removeObserver()
+    NotificationCenter.default.removeObserver(self)
   }
 
   @objc fileprivate func topLabel() {
+    if hasCellShowDeleteBtn {
+      NotificationCenter.default.post(name: SMNotification.MemoCellShouldHiddenDeleteBtn, object: nil)
+      hasCellShowDeleteBtn = false
+      return
+    }
     if let memo = memo {
       didSelectedMemoAction?(memo)
     }
@@ -84,6 +93,14 @@ class MemoCell: UICollectionViewCell {
     if let memo = memo {
       deleteMemoAction?(memo)
     }
+  }
+
+  @objc fileprivate func receiveMemoCellDidShowDeleteBtnNotification() {
+    hasCellShowDeleteBtn = true
+  }
+
+  @objc fileprivate func hiddenDeleteButtonAnimated() {
+    hiddenDeleteButton(withAnimated: true)
   }
 
   override func prepareForReuse() {
@@ -152,7 +169,17 @@ private extension MemoCell {
 
 extension MemoCell: UIScrollViewDelegate {
 
+  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    if hasCellShowDeleteBtn {
+      NotificationCenter.default.post(name: SMNotification.MemoCellShouldHiddenDeleteBtn, object: nil)
+      hasCellShowDeleteBtn = false
+    }
+  }
+
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    if scrollView.contentOffset.x >= deleteViewWidth {
+      NotificationCenter.default.post(name: SMNotification.MemoCellDidShowDeleteBtn, object: nil)
+    }
     if scrollView.isTracking {
       return
     }
@@ -174,8 +201,8 @@ extension MemoCell: UIScrollViewDelegate {
     }
   }
 
-  func hiddenDeleteButton(withAnimated animated: Bool) {
-    let duration: TimeInterval = animated ? 0.1 : 0
+  func hiddenDeleteButton(withAnimated animated: Bool = true) {
+    let duration: TimeInterval = animated ? 0.2 : 0
     UIView.animate(withDuration: duration) {
       self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
     }

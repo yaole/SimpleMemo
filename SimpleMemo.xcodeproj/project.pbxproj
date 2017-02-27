@@ -23,6 +23,7 @@
 		F4351DD11E62CC62001FE8A9 /* DefaultMemos.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4351DC91E62CC62001FE8A9 /* DefaultMemos.plist */; };
 		F4351DD31E62CC62001FE8A9 /* SimpleMemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4351DCB1E62CC62001FE8A9 /* SimpleMemo.xcdatamodeld */; };
 		F4351DD41E62CC62001FE8A9 /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4351DCD1E62CC62001FE8A9 /* LaunchScreen.strings */; };
+		F49D67121E645A8E0014E284 /* SMNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49D67111E645A8E0014E284 /* SMNotification.swift */; };
 		F4A0414E1E618CA00012EAEF /* PrintLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A0414D1E618CA00012EAEF /* PrintLog.swift */; };
 		F4A041501E618F910012EAEF /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A0414F1E618F910012EAEF /* MemoViewController.swift */; };
 		F4A041531E61A3020012EAEF /* String+FetchTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A041521E61A3020012EAEF /* String+FetchTitle.swift */; };
@@ -90,6 +91,7 @@
 		F4351DCA1E62CC62001FE8A9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4351DCC1E62CC62001FE8A9 /* SimpleMemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SimpleMemo.xcdatamodel; sourceTree = "<group>"; };
 		F4351DCE1E62CC62001FE8A9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		F49D67111E645A8E0014E284 /* SMNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMNotification.swift; sourceTree = "<group>"; };
 		F4A0414D1E618CA00012EAEF /* PrintLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintLog.swift; sourceTree = "<group>"; };
 		F4A0414F1E618F910012EAEF /* MemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		F4A041521E61A3020012EAEF /* String+FetchTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+FetchTitle.swift"; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				F4351DBB1E628538001FE8A9 /* UIColor+Extension.swift */,
 				F4351DC11E628735001FE8A9 /* UIView+Extension.swift */,
 				F4351DC31E628C2D001FE8A9 /* Appearance.swift */,
+				F49D67111E645A8E0014E284 /* SMNotification.swift */,
 				F4351DB11E6284C5001FE8A9 /* Info.plist */,
 			);
 			path = SMKit;
@@ -542,6 +545,7 @@
 			files = (
 				F4351DC21E628735001FE8A9 /* UIView+Extension.swift in Sources */,
 				F4351DC41E628C2D001FE8A9 /* Appearance.swift in Sources */,
+				F49D67121E645A8E0014E284 /* SMNotification.swift in Sources */,
 				F4351DBC1E628538001FE8A9 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
