@@ -3,7 +3,11 @@
 
 **下载易便签:** https://itunes.apple.com/cn/app/yi-bian-qian/id1029807896?mt=8
 
-![Demo](https://github.com/lijuncode/SimpleMemo/blob/1.3.0/Demo/SimpleMemoDemo.gif)
+![Demo](https://github.com/lijuncode/SimpleMemo/blob/master/Demo/SimpleMemoDemo.gif)
+
+## 1.3.0 功能
+- [x] 左滑删除
+- [ ] 在印象笔记中建立独立的笔记本，实现双向同步
 
 ## 1.2.0 版更新
 - **适配Swift 3.0**
