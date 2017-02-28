@@ -1,21 +1,24 @@
 PODS:
   - EvernoteSDK (3.0.0)
+  - SnapKit (3.2.0)
 
 DEPENDENCIES:
-  - EvernoteSDK (from `https://github.com/evernote/evernote-cloud-sdk-ios`)
+  - EvernoteSDK (from `https://github.com/evernote/evernote-cloud-sdk-ios.git`)
+  - SnapKit (~> 3.2.0)
 
 EXTERNAL SOURCES:
   EvernoteSDK:
-    :git: https://github.com/evernote/evernote-cloud-sdk-ios
+    :git: https://github.com/evernote/evernote-cloud-sdk-ios.git
 
 CHECKOUT OPTIONS:
   EvernoteSDK:
     :commit: ff8c083be3e1f950323dd01c056322e54a712643
-    :git: https://github.com/evernote/evernote-cloud-sdk-ios
+    :git: https://github.com/evernote/evernote-cloud-sdk-ios.git
 
 SPEC CHECKSUMS:
   EvernoteSDK: 6d66f44f5cbb7eaa9f4a2a9d4b3f033938647631
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: 9c46f71c563fdc68abd3cab1266d37a47aad247f
+PODFILE CHECKSUM: 5103388c808ba3e2e348c47658425700f4c8127c
 
 COCOAPODS: 1.1.1

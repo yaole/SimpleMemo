@@ -9,8 +9,11 @@
 import UIKit
 import CoreData
 import EvernoteSDK
+import SMKit
+import SnapKit
 
-private let backgroundColor = UIColor(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1)
+private let backgroundColor = UIColor(r: 245, g: 245, b: 245)
+private let addBtnSize: CGFloat = 55
 
 class MemoListViewController: MemoCollectionViewController {
 
@@ -19,17 +22,24 @@ class MemoListViewController: MemoCollectionViewController {
   fileprivate lazy var searchResults = [Memo]()
   fileprivate lazy var searchBar = UISearchBar()
 
+  fileprivate let addButton: UIButton = {
+    let button = UIButton(type: .custom)
+    let image = UIImage(named: "ic_add")?.withRenderingMode(.alwaysTemplate)
+    button.setImage(image, for: .normal)
+    button.tintColor = .white
+    button.backgroundColor = SMColor.tint
+    button.layer.cornerRadius = addBtnSize / 2
+    button.layer.masksToBounds = true
+    return button
+  }()
+
   fileprivate lazy var titleLabel: UILabel = {
     let label = UILabel()
     label.text = "便签"
-    label.font = UIFont.systemFont(ofSize: 17)
+    label.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightMedium)
+    label.textColor = SMColor.title
     label.sizeToFit()
     return label
-  }()
-
-  fileprivate lazy var addItem: UIBarButtonItem = {
-    let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(addMemo))
-    return item
   }()
 
   fileprivate lazy var evernoteItem: UIBarButtonItem = {
@@ -64,6 +74,13 @@ class MemoListViewController: MemoCollectionViewController {
     collectionView?.register(MemoCell.self, forCellWithReuseIdentifier: String(describing: MemoCell.self))
     setNavigationBar()
 
+    addButton.addTarget(self, action: #selector(addMemo), for: .touchUpInside)
+    view.addSubview(addButton)
+    addButton.snp.makeConstraints { (addBtn) in
+      addBtn.centerX.equalToSuperview()
+      addBtn.bottom.equalTo(view).offset(-30)
+      addBtn.size.equalTo(CGSize(width: addBtnSize, height: addBtnSize))
+    }
     if traitCollection.forceTouchCapability == .available {
       registerForPreviewing(with: self, sourceView: view)
     }
@@ -94,7 +111,7 @@ extension MemoListViewController {
 
     let memo = isSearching ? searchResults[indexPath.row] : fetchedResultsController.object(at: indexPath)
     cell.memo = memo
-    cell.deleteMemo = { memo in
+    cell.deleteMemoAction = { memo in
       let alert = UIAlertController(title: "删除便签", message: nil, preferredStyle: UIAlertControllerStyle.alert)
       alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: nil))
       alert.addAction(UIAlertAction(title: "删除", style: UIAlertActionStyle.destructive, handler: { (action) -> Void in
@@ -104,15 +121,13 @@ extension MemoListViewController {
       }))
       self.present(alert, animated: true, completion: nil)
     }
-    return cell
-  }
 
-  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    searchBar.resignFirstResponder()
-    let memo = isSearching ? searchResults[indexPath.row] : fetchedResultsController.object(at: indexPath)
-    let MemoView = MemoViewController()
-    MemoView.memo = memo
-    navigationController?.pushViewController(MemoView, animated: true)
+    cell.didSelectedMemoAction = { memo in
+      let MemoView = MemoViewController()
+      MemoView.memo = memo
+      self.navigationController?.pushViewController(MemoView, animated: true)
+    }
+    return cell
   }
 }
 
@@ -120,12 +135,12 @@ private extension MemoListViewController {
 
   func setNavigationBar() {
     navigationItem.titleView = titleLabel
-    navigationItem.rightBarButtonItems = [addItem]
-    evernoteItem.tintColor = ENSession.shared.isAuthenticated ? UIColor(red: 23/255.0, green: 127/255.0, blue: 251/255.0, alpha: 1) : UIColor.gray
-    navigationItem.leftBarButtonItems = [evernoteItem, searchItem]
+    evernoteItem.tintColor = ENSession.shared.isAuthenticated ? SMColor.tint : UIColor.gray
+    navigationItem.rightBarButtonItem = searchItem
+    navigationItem.leftBarButtonItem = evernoteItem
   }
 
-  /// 印象笔记登录注销
+  /// evernoteAuthenticate
   @objc func evernoteAuthenticate() {
     if ENSession.shared.isAuthenticated {
       let alert = UIAlertController(title: "退出印象笔记?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
@@ -138,7 +153,7 @@ private extension MemoListViewController {
     } else {
       ENSession.shared.authenticate(with: self, preferRegistration: false, completion: { error in
         if error == nil {
-          self.evernoteItem.tintColor = UIColor(red: 23/255.0, green: 127/255.0, blue: 251/255.0, alpha: 1)
+          self.evernoteItem.tintColor = SMColor.tint
         } else {
           printLog(message: error.debugDescription)
         }
@@ -167,7 +182,7 @@ private extension MemoListViewController {
       margin = 10
     }
 
-    searchBar.frame = CGRect(x: 0, y: 0, width: searchView.bounds.width - margin, height: searchView.bounds.height)
+    searchBar.frame = CGRect(x: 0, y: 0, width: searchView.width - margin, height: searchView.height)
     searchBar.becomeFirstResponder()
     isSearching = true
     if !searchBar.text!.isEmpty {

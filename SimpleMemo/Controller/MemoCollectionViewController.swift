@@ -8,11 +8,10 @@
 
 import UIKit
 
-let margin: CGFloat = 10
-var itemWidth: CGFloat = 0
-
 class MemoCollectionViewController: UICollectionViewController {
 
+  let margin: CGFloat = 10
+  var itemWidth: CGFloat = 0
   let flowLayout = UICollectionViewFlowLayout()
   var totalLie: Int = 0
 

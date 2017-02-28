@@ -1,6 +1,9 @@
 # SimpleMemo
+[![Build Status](https://travis-ci.org/lijuncode/SimpleMemo.svg?branch=master)](https://travis-ci.org/lijuncode/SimpleMemo)
 
 **下载易便签:** https://itunes.apple.com/cn/app/yi-bian-qian/id1029807896?mt=8
+
+![Demo](https://github.com/lijuncode/SimpleMemo/blob/1.3.0/Demo/SimpleMemoDemo.gif)
 
 ## 1.2.0 版更新
 - **适配Swift 3.0**
