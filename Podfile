@@ -7,7 +7,7 @@ use_frameworks!
 target 'SimpleMemo' do
 	
 	pod 'EvernoteSDK',  :git => 'https://github.com/evernote/evernote-cloud-sdk-ios.git'
-  pod 'SnapKit', '~> 3.2.0'
+  pod 'SnapKit', :git => 'https://github.com/SnapKit/SnapKit.git', :commit => 'ff97375b22fdf6a28a06e7f06823ce97b44c5037'
 	
 	target 'SimpleMemoTests' do
 		inherit! :search_paths
