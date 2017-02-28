@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     loadDefaultMemos()
 
+    let evernoteKey = "xxxx"
+    let evernoteSecret = "xxxxxx"
     // Need a `EvernoteKey.swift` file, and init `evernoteKey` and `evernoteSecret`.
     ENSession.setSharedSessionConsumerKey(evernoteKey, consumerSecret: evernoteSecret, optionalHost: nil)
 
